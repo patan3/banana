@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Template1_2dCharacter/src/Player/Player.tscn" type="PackedScene" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 192.0
+
+[node name="Playground" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 960, 832 )
+
+[node name="Move" parent="Player/StateMachine" index="0"]
+max_speed_default = Vector2( 500, 500 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 704, 704 )
+shape = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 851, 719 )
+current = true
+
+[editable path="Player"]
