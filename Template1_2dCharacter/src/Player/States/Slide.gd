@@ -5,6 +5,9 @@ Delegates movement to its parent Move state and extends it
 with state transitions
 """
 
+signal slide_started
+signal slide_ended
+
 
 onready var cooldown_timer: Timer = get_node("CooldownTimer")
 
@@ -27,6 +30,7 @@ func physics_process(delta: float) -> void:
 func enter(msg: Dictionary = {}) -> void:
 	var move: = get_parent()
 	move.enter(msg)
+	emit_signal("slide_started")
 	owner.set_collision_mask_bit(Globals.WORLD_LAYER, false)
 	owner.set_collision_mask_bit(Globals.ENEMIES_LAYER, false)
 	owner.skin.play("run_naked")
@@ -44,6 +48,7 @@ func enter(msg: Dictionary = {}) -> void:
 
 func exit() -> void:
 	var move: = get_parent()
+	emit_signal("slide_ended")
 	owner.enemy_detector.is_active = false
 	move.friction = move.friction_default
 	move.max_speed = move.max_speed_default
