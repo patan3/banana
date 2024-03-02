@@ -3,6 +3,7 @@ class_name Player
 
 onready var state_machine: StateMachine = $StateMachine
 onready var skin: = $Skin
+onready var enemy_detector: Area2D = $EnemyDetector
 
 onready var collider: CollisionShape2D = $CollisionShape2D
 

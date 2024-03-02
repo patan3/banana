@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Template1_2dCharacter/src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Template1_2dCharacter/src/Player/States/Slide.gd" type="Script" id=2]
+[ext_resource path="res://Template1_2dCharacter/src/Player/EnemyDetector.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Template1_2dCharacter/src/Player/Skin.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Template1_2dCharacter/src/Main/StateMachine/StateMachine.gd" type="Script" id=5]
 [ext_resource path="res://Template1_2dCharacter/src/Player/States/Move.gd" type="Script" id=6]
@@ -61,5 +62,7 @@ script = ExtResource( 12 )
 
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource( 13 )
+
+[node name="EnemyDetector" parent="." instance=ExtResource( 3 )]
 
 [editable path="Skin"]
