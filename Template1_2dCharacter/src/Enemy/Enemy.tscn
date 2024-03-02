@@ -8,7 +8,8 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 37.0135
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="Enemy" type="KinematicBody2D" groups=["enemies"]]
+collision_layer = 2
 script = ExtResource( 4 )
 
 [node name="StateMachine" type="Node" parent="."]
