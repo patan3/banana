@@ -5,13 +5,12 @@ Delegates movement to its parent Move state and extends it
 with state transitions
 """
 
-const WORLD_LAYER: = 2
 
 onready var cooldown_timer: Timer = get_node("CooldownTimer")
 
 export var slide_friction: float = 0.0125
 export var max_speed_friction: Vector2 = Vector2(800.0, 800.0)
-
+export var initial_slide_push_factor: float = 1.5
 
 func unhandled_input(event: InputEvent) -> void:
 	var move: = get_parent()
@@ -28,11 +27,13 @@ func physics_process(delta: float) -> void:
 func enter(msg: Dictionary = {}) -> void:
 	var move: = get_parent()
 	move.enter(msg)
-	owner.set_collision_mask_bit(WORLD_LAYER, false)
+	owner.set_collision_mask_bit(Globals.WORLD_LAYER, false)
+	owner.set_collision_mask_bit(Globals.ENEMIES_LAYER, false)
 	owner.skin.play("run_naked")
 	owner.enemy_detector.is_active = true
 	move.friction = slide_friction
 	move.max_speed = max_speed_friction
+	move.velocity += move.velocity * initial_slide_push_factor
 #### Old code to take as reference ####
 #	if "velocity" in msg:
 #		move.velocity = msg.velocity 
@@ -47,5 +48,7 @@ func exit() -> void:
 	move.friction = move.friction_default
 	move.max_speed = move.max_speed_default
 	cooldown_timer.start()
-	owner.set_collision_mask_bit(WORLD_LAYER, true)
+	owner.set_collision_mask_bit(Globals.WORLD_LAYER, true)
+	owner.set_collision_mask_bit(Globals.ENEMIES_LAYER, true)
 	move.exit()
+

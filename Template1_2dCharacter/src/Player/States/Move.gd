@@ -58,6 +58,8 @@ func physics_process(_delta: float) -> void:
 	# Using the follow steering behavior.
 	var target_velocity = direction * max_speed
 	velocity += (target_velocity - velocity) * friction
+	velocity.x = clamp(velocity.x, -max_speed.x, max_speed.x)
+	velocity.y = clamp(velocity.y, -max_speed.y, max_speed.y)
 	velocity = owner.move_and_slide(velocity)
 
 
@@ -91,6 +93,7 @@ func _on_Player_bounce(bounce_direction: Vector2):
 	if _state_machine._state_name == "Slide":
 		velocity.x += bounce_direction.x * velocity.x * bump_factor
 		velocity.y += bounce_direction.y * velocity.y * bump_factor
+
 
 static func calculate_velocity(
 		old_velocity: Vector2,

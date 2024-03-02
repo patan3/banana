@@ -1,5 +1,8 @@
 extends Node
 
+const WORLD_LAYER: = 2
+const ENEMIES_LAYER: = 1
+
 
 var player_global_position
 
