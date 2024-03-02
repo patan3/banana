@@ -5,7 +5,7 @@
 [node name="Playground_pierre" type="Spatial"]
 
 [node name="EnemyManager" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.438461, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0 )
 startSpawnInterval = 5.0
 difficultyIncreaseTimer = 10.0
 
@@ -16,5 +16,5 @@ width = 18.2728
 depth = 11.5196
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.767937, 0.640525, 0, -0.640525, 0.767937, 0, 7.6746, 9.46175 )
+transform = Transform( 1, 0, 0, 0, 0.767937, 0.640525, 0, -0.640525, 0.767937, 0, 8.04615, 10.4521 )
 fov = 50.0

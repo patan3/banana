@@ -43,6 +43,11 @@ Globals="*res://Globals.gd"
 MusicManager="*res://Template1_2dCharacter/src/AudioManager/MusicManager.gd"
 SfxManager="*res://Template1_2dCharacter/src/AudioManager/SFXManager.gd"
 
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
@@ -84,6 +89,7 @@ debug={
 
 2d_physics/layer_1="player"
 2d_physics/layer_2="enemies"
+2d_physics/layer_3="world"
 
 [physics]
 
