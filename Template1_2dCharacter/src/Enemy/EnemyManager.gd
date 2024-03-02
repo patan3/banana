@@ -1,15 +1,26 @@
 extends Node2D
 
-export var spawnInterval = 1.0
+export var startSpawnInterval = 1.0
+export var difficultyIncreaseTimer = 5.0
+export var difficultyIncreaseStep = 1.1
+export var minSpawnInterval = 1.0
 
 var enemy = preload("res://Template1_2dCharacter/src/Enemy/Enemy.tscn")
 
 onready var timer = get_node("Timer")
 
+var time_elapsed : float = 0.0
+
 enum SIDE {TOP, RIGHT, LEFT, BOTTOM}
 
+func _physics_process(delta):
+	time_elapsed += delta
+	if time_elapsed > difficultyIncreaseTimer && timer.wait_time > minSpawnInterval:
+		timer.wait_time /= difficultyIncreaseStep
+		time_elapsed = 0.0
+	
 func _ready():
-	timer.wait_time = spawnInterval
+	timer.wait_time = startSpawnInterval
 	timer.connect("timeout", self, "spawn")
 
 func generate_position():

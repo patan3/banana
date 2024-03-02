@@ -4,7 +4,6 @@ extends State
 
 onready var jump_delay: Timer = $JumpDelay
 
-
 func _get_configuration_warning() -> String:
 	return "" if $JumpDelay else "%s requires a Timer child named JumpDelay" % name
 

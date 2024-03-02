@@ -6,8 +6,8 @@ The player's animated skin. Provides a simple interface to play animations.
 
 signal animation_finished(name)
 
+onready var sprite: Sprite = $banana
 onready var anim: AnimationPlayer = $AnimationPlayer
-
 
 
 func _ready() -> void:

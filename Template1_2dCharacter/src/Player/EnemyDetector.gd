@@ -6,14 +6,17 @@ var collected_enemies: Array
 
 export var is_active: bool = false setget set_is_active
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	connect("area_entered", self, "_on_EnemyDetector_area_entered")
+	connect("body_entered", self, "_on_EnemyDetector_body_entered")
 
-func _on_EnemyDetector_area_entered(area: Area2D):
-	if area.is_in_group("enemies"):
+
+func _on_EnemyDetector_body_entered(body: Node):
+	if body.is_in_group("enemies"):
+		collected_enemies.append(body)
 		emit_signal("enemy_collected")
-		collected_enemies.append(area)
+		body.kill()
 
 
 func set_is_active(value: bool):
