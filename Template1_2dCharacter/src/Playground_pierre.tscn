@@ -1,9 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Template1_2dCharacter/src/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Template1_2dCharacter/src/Enemy/EnemyManager.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Template1_2dCharacter/src/Juice/WalkSmoke.gd" type="Script" id=3]
 [ext_resource path="res://assets/vfx/Smoke.png" type="Texture" id=4]
+
+[sub_resource type="PhysicsMaterial" id=4]
+friction = 0.0
+bounce = 1.0
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 519.5, 10 )
@@ -17,9 +21,11 @@ colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1 )
 [node name="Playground_pierre" type="Node2D"]
 
 [node name="EnemyManager" parent="." instance=ExtResource( 2 )]
-spawnInterval = 5.0
+startSpawnInterval = 5.0
+difficultyIncreaseTimer = 10.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 509.5, 0 )
@@ -33,6 +39,7 @@ shape = SubResource( 1 )
 position = Vector2( 451, 407 )
 
 [node name="WalkSmoke" type="CPUParticles2D" parent="Player"]
+visible = false
 position = Vector2( -1, -14 )
 z_index = -1
 amount = 3

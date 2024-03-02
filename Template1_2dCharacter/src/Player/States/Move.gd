@@ -17,18 +17,24 @@ var velocity: = Vector2.ZERO
 var friction = friction_default
 var momentum_friction = momentum_friction_default
 
+
 func _ready():
 	owner.get_node("EnemyDetector").connect("enemy_collected", self, "_on_EnemyDetector_enemy_collected")
 	momentum_timer.connect("timeout", self, "_on_MomentumTimer_timeout")
+	cooldown_timer.connect("timeout", self, "_on_CooldownTimer_timeout")
+
 
 func unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("slide") and cooldown_timer.is_stopped():
 		_state_machine.transition_to("Move/Slide")
 		print("Going to slide state")
+	elif !cooldown_timer.is_stopped():
+		owner.skin.sprite.set_modulate(Color(0.0, 0.5, 0.0, 1.0))
 #	if owner.is_on_floor() and event.is_action_pressed("jump"):
 #		_state_machine.transition_to("Move/Air", { impulse = jump_impulse })
 #	if event.is_action_pressed('toggle_debug_move'):
 #		_state_machine.transition_to('Debug')
+
 
 func physics_process(_delta: float) -> void:
 	# Once again, we call `Input.get_action_strength()` to support analog movement.
@@ -64,14 +70,19 @@ func exit() -> void:
 #	$Air.disconnect("jumped", $Idle.jump_delay, "start")
 
 
-
 func _on_EnemyDetector_enemy_collected():
 	friction = momentum_friction
 	momentum_timer.start()
 	
 
+
 func _on_MomentumTimer_timeout():
 	friction = friction_default
+
+
+func _on_CooldownTimer_timeout():
+	owner.skin.sprite.set_modulate(Color(1.0, 1.0, 1.0, 1.0))
+
 
 static func calculate_velocity(
 		old_velocity: Vector2,
@@ -85,7 +96,7 @@ static func calculate_velocity(
 	new_velocity += move_direction * acceleration * delta
 	new_velocity.x = clamp(new_velocity.x, -max_speed.x, max_speed.x)
 	new_velocity.y = clamp(new_velocity.y, -max_speed.y, max_speed.y)
-
+	
 	return new_velocity
 
 

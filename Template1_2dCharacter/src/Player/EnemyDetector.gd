@@ -14,7 +14,7 @@ func _ready():
 
 func _on_EnemyDetector_body_entered(body: Node):
 	if body.is_in_group("enemies"):
-		enemy_collected.append(body)
+		collected_enemies.append(body)
 		emit_signal("enemy_collected")
 		body.kill()
 
