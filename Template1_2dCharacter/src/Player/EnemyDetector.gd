@@ -1,6 +1,8 @@
 extends Area2D
 
-var enemy_collected: Array
+signal enemy_collected
+
+var collected_enemies: Array
 
 export var is_active: bool = false setget set_is_active
 
@@ -13,6 +15,7 @@ func _ready():
 func _on_EnemyDetector_body_entered(body: Node):
 	if body.is_in_group("enemies"):
 		enemy_collected.append(body)
+		emit_signal("enemy_collected")
 		body.kill()
 
 

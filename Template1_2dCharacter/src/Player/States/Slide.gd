@@ -5,6 +5,8 @@ Delegates movement to its parent Move state and extends it
 with state transitions
 """
 
+onready var cooldown_timer: Timer = get_node("CooldownTimer")
+
 export var slide_friction: float = 0.0125
 export var max_speed_friction: Vector2 = Vector2(1000.0, 1000.0)
 
@@ -41,4 +43,5 @@ func exit() -> void:
 	owner.enemy_detector.is_active = false
 	move.friction = move.friction_default
 	move.max_speed = move.max_speed_default
+	cooldown_timer.start()
 	move.exit()

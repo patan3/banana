@@ -23,3 +23,4 @@ func set_is_active(value: bool) -> void:
 
 func _physics_process(delta):
 	Globals.player_global_position = global_position
+
