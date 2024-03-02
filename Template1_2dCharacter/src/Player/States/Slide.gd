@@ -8,7 +8,7 @@ with state transitions
 onready var cooldown_timer: Timer = get_node("CooldownTimer")
 
 export var slide_friction: float = 0.0125
-export var max_speed_friction: Vector2 = Vector2(1000.0, 1000.0)
+export var max_speed_friction: Vector2 = Vector2(800.0, 800.0)
 
 
 func unhandled_input(event: InputEvent) -> void:

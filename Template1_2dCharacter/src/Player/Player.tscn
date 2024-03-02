@@ -36,6 +36,7 @@ initial_state = NodePath("Move")
 
 [node name="Move" type="Node" parent="StateMachine"]
 script = ExtResource( 6 )
+bump_factor_default = 3.0
 
 [node name="Idle" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 7 )

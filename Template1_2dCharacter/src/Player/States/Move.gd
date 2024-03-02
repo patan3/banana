@@ -11,15 +11,18 @@ onready var momentum_timer: Timer = get_node("Slide/MomentumTimer")
 export var friction_default: = 0.18
 export var momentum_friction_default: = 0.01
 export var max_speed_default: = Vector2(500.0, 500.0)
+export var bump_factor_default: float = 5.0
 
 var max_speed: = max_speed_default
 var velocity: = Vector2.ZERO
 var friction = friction_default
 var momentum_friction = momentum_friction_default
+var bump_factor = bump_factor_default
 
 
 func _ready():
 	owner.get_node("EnemyDetector").connect("enemy_collected", self, "_on_EnemyDetector_enemy_collected")
+	owner.connect("bounce", self, "_on_Player_bounce")
 	momentum_timer.connect("timeout", self, "_on_MomentumTimer_timeout")
 	cooldown_timer.connect("timeout", self, "_on_CooldownTimer_timeout")
 
@@ -83,6 +86,11 @@ func _on_MomentumTimer_timeout():
 func _on_CooldownTimer_timeout():
 	owner.skin.sprite.set_modulate(Color(1.0, 1.0, 1.0, 1.0))
 
+
+func _on_Player_bounce(bounce_direction: Vector2):
+	if _state_machine._state_name == "Slide":
+		velocity.x += bounce_direction.x * velocity.x * bump_factor
+		velocity.y += bounce_direction.y * velocity.y * bump_factor
 
 static func calculate_velocity(
 		old_velocity: Vector2,
