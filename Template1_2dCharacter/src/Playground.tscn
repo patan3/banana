@@ -7,12 +7,6 @@ radius = 192.0
 
 [node name="Playground" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 960, 832 )
-
-[node name="Move" parent="Player/StateMachine" index="0"]
-max_speed_default = Vector2( 500, 500 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 704, 704 )
 shape = SubResource( 2 )
@@ -21,4 +15,8 @@ shape = SubResource( 2 )
 position = Vector2( 851, 719 )
 current = true
 
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 977, 745 )
+
 [editable path="Player"]
+[editable path="Player/Skin"]

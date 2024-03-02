@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Template1_2dCharacter/src/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Template1_2dCharacter/src/Player/States/Slide.gd" type="Script" id=2]
 [ext_resource path="res://Template1_2dCharacter/src/Player/Skin.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Template1_2dCharacter/src/Main/StateMachine/StateMachine.gd" type="Script" id=5]
 [ext_resource path="res://Template1_2dCharacter/src/Player/States/Move.gd" type="Script" id=6]
@@ -30,8 +31,6 @@ initial_state = NodePath("Move")
 
 [node name="Move" type="Node" parent="StateMachine"]
 script = ExtResource( 6 )
-max_speed_default = Vector2( 500, 2000 )
-acceleration_default = Vector2( 100000, 5000 )
 
 [node name="Idle" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 7 )
@@ -42,6 +41,9 @@ one_shot = true
 
 [node name="Run" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 8 )
+
+[node name="Slide" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 2 )
 
 [node name="Air" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 9 )
@@ -59,3 +61,5 @@ script = ExtResource( 12 )
 
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource( 13 )
+
+[editable path="Skin"]
