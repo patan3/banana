@@ -8,9 +8,9 @@ Move-related children states can delegate movement to it, or use its utility fun
 onready var cooldown_timer: Timer = get_node("Slide/CooldownTimer")
 onready var momentum_timer: Timer = get_node("Slide/MomentumTimer")
 
-export var acceleration_default: = 0.1
-export var friction_default: = 0.01
-export var momentum_friction_default: = 0.01
+export var acceleration_default: = 7
+export var friction_default: = 7
+export var momentum_friction_default: = 1
 export var max_speed_default: = Vector2(500.0, 500.0)
 export var bump_factor_default: float = 5.0
 
@@ -21,6 +21,7 @@ onready var friction = friction_default
 onready var momentum_friction = momentum_friction_default
 onready var bump_factor = bump_factor_default
 
+var can_move: bool = true
 
 func _ready():
 	owner.get_node("EnemyDetector").connect("enemy_collected", self, "_on_EnemyDetector_enemy_collected")
@@ -64,12 +65,18 @@ func physics_process(_delta: float) -> void:
 ##	print("Resulting velocity: " + str(velocity))
 #	velocity.x = clamp(velocity.x, -max_speed.x, max_speed.x)
 #	velocity.y = clamp(velocity.y, -max_speed.y, max_speed.y)
+	if can_move:
+		direction = get_input()
+	else:
+		direction = Vector2.ZERO
 	if direction.length() > 0:
 		velocity = velocity.linear_interpolate(direction.normalized() * max_speed, _delta * acceleration)
 #		velocity = velocity.lerp(direction.normalized() * max_speed, acceleration)
 	else:
 		velocity = velocity.linear_interpolate(Vector2.ZERO, _delta*friction)
 #		velocity = velocity.lerp(Vector2.ZERO, friction)
+	velocity.x = clamp(velocity.x, -max_speed.x, max_speed.x)
+	velocity.y = clamp(velocity.y, -max_speed.y, max_speed.y)
 	velocity = owner.move_and_slide(velocity)
 
 
@@ -105,16 +112,15 @@ func _on_Player_bounce(bounce_direction: Vector2):
 		velocity.y += bounce_direction.y * velocity.y * bump_factor
 
 func get_input():
-	var input = Vector2()
-	if Input.is_action_pressed('right'):
-		input.x += 1
-	if Input.is_action_pressed('left'):
-		input.x -= 1
-	if Input.is_action_pressed('down'):
-		input.y += 1
-	if Input.is_action_pressed('up'):
-		input.y -= 1
-	return input
+	var direction := Vector2(
+		# This first line calculates the X direction, the vector's first component.
+		Input.get_action_strength("right") - Input.get_action_strength("left"),
+		# And here, we calculate the Y direction. Note that the Y-axis points 
+		# DOWN in games.
+		# That is to say, a Y value of `1.0` points downward.
+		Input.get_action_strength("down") - Input.get_action_strength("up")
+	)
+	return direction
 
 
 static func calculate_velocity(
