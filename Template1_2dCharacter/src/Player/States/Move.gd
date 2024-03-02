@@ -31,7 +31,7 @@ func _ready():
 
 
 func unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("slide") and cooldown_timer.is_stopped():
+	if event.is_action_pressed("slide") and cooldown_timer.is_stopped() and _state_machine._state_name!="Slide":
 		_state_machine.transition_to("Move/Slide")
 		print("Going to slide state")
 	elif !cooldown_timer.is_stopped():
