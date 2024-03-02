@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+enum GameState { MENU, PLAYING, PAUSED, GAME_OVER }
+
+var current_state = GameState.MENU
+var score = 0
+
+func _ready():
+	# Initialize game settings, connect signals, etc.
+	pass
+
+func start_game():
+	current_state = GameState.PLAYING
+	score = 0
+	# Additional setup for starting the game
+
+func pause_game():	if current_state == GameState.PLAYING:
+		current_state = GameState.PAUSED
+		# Implement pause functionality
+
+func resume_game():
+	if current_state == GameState.PAUSED:
+		current_state = GameState.PLAYING
+		# Implement resume functionality
+
+func end_game():
+	current_state = GameState.GAME_OVER
+	# Handle game over logic
+"
+
+[node name="Main" type="Node"]
+script = SubResource( 1 )
