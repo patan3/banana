@@ -25,6 +25,7 @@ func enter(msg: Dictionary = {}) -> void:
 	var move: = get_parent()
 	move.enter(msg)
 	owner.skin.play("run_naked")
+	owner.enemy_detector.is_active = true
 	move.friction = slide_friction
 	move.max_speed = max_speed_friction
 #### Old code to take as reference ####
@@ -37,6 +38,7 @@ func enter(msg: Dictionary = {}) -> void:
 
 func exit() -> void:
 	var move: = get_parent()
+	owner.enemy_detector.is_active = false
 	move.friction = move.friction_default
 	move.max_speed = move.max_speed_default
 	move.exit()
