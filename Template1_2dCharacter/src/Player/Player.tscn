@@ -36,6 +36,9 @@ initial_state = NodePath("Move")
 
 [node name="Move" type="Node" parent="StateMachine"]
 script = ExtResource( 6 )
+acceleration_default = 7.0
+friction_default = 7.0
+max_speed_default = Vector2( 1000, 1000 )
 bump_factor_default = 3.0
 
 [node name="Idle" type="Node" parent="StateMachine/Move"]

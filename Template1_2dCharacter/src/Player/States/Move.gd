@@ -8,16 +8,18 @@ Move-related children states can delegate movement to it, or use its utility fun
 onready var cooldown_timer: Timer = get_node("Slide/CooldownTimer")
 onready var momentum_timer: Timer = get_node("Slide/MomentumTimer")
 
-export var friction_default: = 0.18
+export var acceleration_default: = 0.1
+export var friction_default: = 0.01
 export var momentum_friction_default: = 0.01
 export var max_speed_default: = Vector2(500.0, 500.0)
 export var bump_factor_default: float = 5.0
 
-var max_speed: = max_speed_default
-var velocity: = Vector2.ZERO
-var friction = friction_default
-var momentum_friction = momentum_friction_default
-var bump_factor = bump_factor_default
+onready var max_speed: = max_speed_default
+onready var acceleration: = acceleration_default
+onready var velocity: = Vector2.ZERO
+onready var friction = friction_default
+onready var momentum_friction = momentum_friction_default
+onready var bump_factor = bump_factor_default
 
 
 func _ready():
@@ -53,13 +55,21 @@ func physics_process(_delta: float) -> void:
 	# greater than 1.0, making the character move faster than our maximum expected
 	# speed. When that happens, we limit the vector's length to ensure the player 
 	# can't go beyond the maximum speed.
-	if direction.length() > 1.0:
-		direction = direction.normalized()
-	# Using the follow steering behavior.
-	var target_velocity = direction * max_speed
-	velocity += (target_velocity - velocity) * friction
-	velocity.x = clamp(velocity.x, -max_speed.x, max_speed.x)
-	velocity.y = clamp(velocity.y, -max_speed.y, max_speed.y)
+#	if direction.length() > 1.0:
+#		direction = direction.normalized()
+#	# Using the follow steering behavior.
+#	var target_velocity = direction * max_speed
+##	print("Target velocity:   " + str(target_velocity) + " - " + "velocity:   "+str(velocity) + " * " + str(friction))
+#	velocity += (target_velocity - velocity) * (1-friction) * _delta
+##	print("Resulting velocity: " + str(velocity))
+#	velocity.x = clamp(velocity.x, -max_speed.x, max_speed.x)
+#	velocity.y = clamp(velocity.y, -max_speed.y, max_speed.y)
+	if direction.length() > 0:
+		velocity = velocity.linear_interpolate(direction.normalized() * max_speed, _delta * acceleration)
+#		velocity = velocity.lerp(direction.normalized() * max_speed, acceleration)
+	else:
+		velocity = velocity.linear_interpolate(Vector2.ZERO, _delta*friction)
+#		velocity = velocity.lerp(Vector2.ZERO, friction)
 	velocity = owner.move_and_slide(velocity)
 
 
@@ -93,6 +103,18 @@ func _on_Player_bounce(bounce_direction: Vector2):
 	if _state_machine._state_name == "Slide":
 		velocity.x += bounce_direction.x * velocity.x * bump_factor
 		velocity.y += bounce_direction.y * velocity.y * bump_factor
+
+func get_input():
+	var input = Vector2()
+	if Input.is_action_pressed('right'):
+		input.x += 1
+	if Input.is_action_pressed('left'):
+		input.x -= 1
+	if Input.is_action_pressed('down'):
+		input.y += 1
+	if Input.is_action_pressed('up'):
+		input.y -= 1
+	return input
 
 
 static func calculate_velocity(
