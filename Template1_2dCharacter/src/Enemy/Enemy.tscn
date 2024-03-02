@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Template1_2dCharacter/src/Enemy/States/Idle.gd" type="Script" id=1]
 [ext_resource path="res://Template1_2dCharacter/src/Main/StateMachine/StateMachine.gd" type="Script" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Template1_2dCharacter/src/Enemy/Enemy.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 37.0135
 
 [node name="Enemy" type="KinematicBody2D"]
+script = ExtResource( 4 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
