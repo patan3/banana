@@ -4,20 +4,19 @@ Parent state that abstracts and handles basic movement
 Move-related children states can delegate movement to it, or use its utility functions
 """
 # A factor that controls the character's inertia.
-export var friction = 0.18
 
+export var friction_default = 0.18
 export var max_speed_default: = Vector2(500.0, 500.0)
-export var acceleration_default: = Vector2(100000, 3000.0)
-export var jump_impulse: = 900.0
 
-var acceleration: = acceleration_default
 var max_speed: = max_speed_default
 var velocity: = Vector2.ZERO
-
+var friction = friction_default
 
 
 func unhandled_input(event: InputEvent) -> void:
-	pass
+	if event.is_action_pressed("slide"):
+		_state_machine.transition_to("Move/Slide")
+		print("Going to slide state")
 #	if owner.is_on_floor() and event.is_action_pressed("jump"):
 #		_state_machine.transition_to("Move/Air", { impulse = jump_impulse })
 #	if event.is_action_pressed('toggle_debug_move'):
@@ -44,9 +43,12 @@ func physics_process(_delta: float) -> void:
 	velocity += (target_velocity - velocity) * friction
 	velocity = owner.move_and_slide(velocity)
 
+
 func enter(msg: Dictionary = {}) -> void:
 #	$Air.connect("jumped", $Idle.jump_delay, "start")
-	pass
+	owner.skin.play("run")
+	if "velocity" in msg:
+		velocity = msg.velocity 
 
 
 func exit() -> void:

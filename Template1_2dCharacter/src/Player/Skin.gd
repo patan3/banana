@@ -9,6 +9,7 @@ signal animation_finished(name)
 onready var anim: AnimationPlayer = $AnimationPlayer
 
 
+
 func _ready() -> void:
 	anim.connect("animation_finished", self, "_on_Anim_animation_finished")
 
@@ -22,5 +23,5 @@ func play(name: String, data: Dictionary = {}) -> void:
 	Plays the requested animation and safeguards against errors
 	"""
 	assert(name in anim.get_animation_list())
-	anim.stop()
+#	anim.stop()
 	anim.play(name)
