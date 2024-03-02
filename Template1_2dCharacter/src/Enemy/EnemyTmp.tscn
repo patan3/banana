@@ -80,7 +80,6 @@ tracks/0/keys = {
 [node name="EnemyTmp" type="Area2D" groups=["enemies"]]
 collision_layer = 2
 script = ExtResource( 2 )
-speed_h_array = PoolRealArray( 50, 70, 45, 55 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
