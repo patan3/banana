@@ -33,12 +33,15 @@ _global_script_class_icons={
 [application]
 
 config/name="Banana"
+run/main_scene="res://Template1_2dCharacter/src/Playground.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Utils="*res://Template1_2dCharacter/src/Utils.gd"
 Globals="*res://Globals.gd"
+MusicManager="*res://Template1_2dCharacter/src/AudioManager/MusicManager.gd"
+SfxManager="*res://Template1_2dCharacter/src/AudioManager/SFXManager.gd"
 
 [gui]
 
