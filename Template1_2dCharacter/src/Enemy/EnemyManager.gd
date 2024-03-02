@@ -1,4 +1,7 @@
-extends Node2D
+extends Spatial
+
+onready var spawnPathRight : PathFollow = get_node("Path/PathFollow")
+onready var spawnPathLeft : PathFollow = get_node("Path2/PathFollow")
 
 export var startSpawnInterval = 1.0
 export var difficultyIncreaseTimer = 5.0
@@ -23,24 +26,27 @@ func _ready():
 	timer.wait_time = startSpawnInterval
 	timer.connect("timeout", self, "spawn")
 
-func generate_position():
-	var size = get_viewport().size
+func generate_position() -> Vector3:
+	var path : PathFollow = Utils.choose([spawnPathRight, spawnPathLeft])
 	
 	var side = Utils.choose([SIDE.LEFT, SIDE.RIGHT])
 	
 	match side:
-		SIDE.TOP:
-			return Vector2(rand_range(0.0, size.x), 0.0)
-		SIDE.BOTTOM:
-			return Vector2(rand_range(0.0, size.x), size.y)
 		SIDE.LEFT:
-			return Vector2(0.0, rand_range(0.0, size.y))
+			path.unit_offset = randf()
+			return path.global_transform.origin
 		SIDE.RIGHT:
-			return Vector2(size.x, rand_range(0.0, size.y))
+			return path.global_transform.origin
+		_:
+			return Vector3.ZERO
 
 func spawn():
 	var instance = enemy.instance()
-	instance.position = generate_position()
-	instance.direction = ceil(((get_viewport().size / 2) - instance.position).x)/(get_viewport().size.x/2)
+	instance.transform.origin = generate_position()
+	if instance.transform.origin.x > 0.0:
+		instance.direction = -1.0
+	else:
+		instance.direction = 1.0
+	
 	self.add_child(instance)
 

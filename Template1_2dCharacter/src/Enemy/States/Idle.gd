@@ -9,7 +9,7 @@ enum MODULATOR {
 var currentModulator
 
 export var speed = 500.0
-var initial_direction : Vector2
+var initial_direction : Vector3
 
 var currentRandom = 0.0
 var targetRandom = 0.0
@@ -20,12 +20,12 @@ func unhandled_input(event: InputEvent) -> void:
 
 func physics_process(delta: float) -> void:
 	var modulator = get_modulator(currentModulator, delta)
-	var velocity = initial_direction + Vector2(0.0, modulator)
+	var velocity = initial_direction + Vector3(0.0, 0.0, modulator)
 	owner.move_and_slide( velocity * speed * delta)
 
 
 func enter(msg: Dictionary = {}) -> void:
-	initial_direction = Vector2(owner.direction, 0.0).normalized()
+	initial_direction = Vector3(owner.direction, 0.0, 0.0).normalized()
 	print(initial_direction)
 	currentModulator = Utils.choose([MODULATOR.SIN, MODULATOR.LINE, MODULATOR.RANDOM])
 

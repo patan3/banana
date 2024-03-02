@@ -1,85 +1,24 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Template1_2dCharacter/src/Enemy/States/Idle.gd" type="Script" id=1]
 [ext_resource path="res://Template1_2dCharacter/src/Main/StateMachine/StateMachine.gd" type="Script" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://Template1_2dCharacter/src/Enemy/Enemy.gd" type="Script" id=4]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 37.0135
+[sub_resource type="SphereShape" id=5]
+radius = 1.41687
 
 [sub_resource type="Animation" id=2]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
-}
 
 [sub_resource type="Animation" id=3]
 resource_name = "flip"
 length = 0.75
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( -2, 1 ),
-"update": 0,
-"values": [ 0.0, -42.7893 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 0.5, 0.7 ),
-"transitions": PoolRealArray( -2, 1, -2, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, -62 ), Vector2( 0, -51 ), Vector2( 0, -62 ) ]
-}
 
 [sub_resource type="Animation" id=4]
 resource_name = "idle"
 loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( -2, 2 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, -16 ) ]
-}
 
-[node name="Enemy" type="KinematicBody2D" groups=["enemies"]]
+[node name="Enemy" type="KinematicBody" groups=["enemies"]]
 collision_layer = 2
 script = ExtResource( 4 )
 
@@ -89,17 +28,27 @@ initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource( 1 )
-speed = 2000.0
+speed = 100.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 1, 0, 0, 1 )
-texture = ExtResource( 3 )
+[node name="CollisionShape2D" type="CollisionShape" parent="."]
+shape = SubResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
 anims/RESET = SubResource( 2 )
 anims/flip = SubResource( 3 )
 anims/idle = SubResource( 4 )
+
+[node name="skin" type="CSGBox" parent="."]
+width = 1.5
+height = 1.5
+depth = 1.5
+
+[node name="CSGTorus" type="CSGTorus" parent="skin"]
+transform = Transform( 0.96584, 0.259139, 0, -0.259139, 0.96584, 0, 0, 0, 1, -0.0141227, 0.842366, -0.00862217 )
+inner_radius = 0.147844
+outer_radius = 0.923371
+
+[node name="CSGSphere" type="CSGSphere" parent="skin"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152191, 1.36298, 0 )
+radius = 0.67477

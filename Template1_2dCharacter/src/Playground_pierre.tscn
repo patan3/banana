@@ -1,62 +1,20 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Template1_2dCharacter/src/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Template1_2dCharacter/src/Enemy/EnemyManager.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Template1_2dCharacter/src/Juice/WalkSmoke.gd" type="Script" id=3]
-[ext_resource path="res://assets/vfx/Smoke.png" type="Texture" id=4]
 
-[sub_resource type="PhysicsMaterial" id=4]
-friction = 0.0
-bounce = 1.0
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 519.5, 10 )
-
-[sub_resource type="Curve" id=2]
-_data = [ Vector2( 0, 1 ), 0.0, 0.347768, 0, 0, Vector2( 1, 0.681818 ), -1.9562, 0.0, 0, 0 ]
-
-[sub_resource type="Gradient" id=3]
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1 )
-
-[node name="Playground_pierre" type="Node2D"]
+[node name="Playground_pierre" type="Spatial"]
 
 [node name="EnemyManager" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.438461, 0 )
 startSpawnInterval = 5.0
 difficultyIncreaseTimer = 10.0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-physics_material_override = SubResource( 4 )
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.00325, 0 )
+use_collision = true
+width = 18.2728
+depth = 11.5196
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 509.5, 0 )
-shape = SubResource( 1 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 511, 598 )
-shape = SubResource( 1 )
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 451, 407 )
-
-[node name="WalkSmoke" type="CPUParticles2D" parent="Player"]
-visible = false
-position = Vector2( -1, -14 )
-z_index = -1
-amount = 3
-lifetime = 0.3
-local_coords = false
-texture = ExtResource( 4 )
-emission_shape = 1
-emission_sphere_radius = 4.0
-spread = 180.0
-gravity = Vector2( 0, 0 )
-initial_velocity = 57.55
-initial_velocity_random = 1.0
-angular_velocity = 32.63
-angle_random = 1.0
-scale_amount_random = 0.35
-scale_amount_curve = SubResource( 2 )
-color_ramp = SubResource( 3 )
-hue_variation = 0.02
-hue_variation_random = 0.25
-script = ExtResource( 3 )
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.767937, 0.640525, 0, -0.640525, 0.767937, 0, 7.6746, 9.46175 )
+fov = 50.0
