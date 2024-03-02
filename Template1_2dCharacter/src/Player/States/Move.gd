@@ -5,16 +5,24 @@ Move-related children states can delegate movement to it, or use its utility fun
 """
 # A factor that controls the character's inertia.
 
-export var friction_default = 0.18
+onready var cooldown_timer: Timer = get_node("Slide/CooldownTimer")
+onready var momentum_timer: Timer = get_node("Slide/MomentumTimer")
+
+export var friction_default: = 0.18
+export var momentum_friction_default: = 0.01
 export var max_speed_default: = Vector2(500.0, 500.0)
 
 var max_speed: = max_speed_default
 var velocity: = Vector2.ZERO
 var friction = friction_default
+var momentum_friction = momentum_friction_default
 
+func _ready():
+	owner.get_node("EnemyDetector").connect("enemy_collected", self, "_on_EnemyDetector_enemy_collected")
+	momentum_timer.connect("timeout", self, "_on_MomentumTimer_timeout")
 
 func unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("slide"):
+	if event.is_action_pressed("slide") and cooldown_timer.is_stopped():
 		_state_machine.transition_to("Move/Slide")
 		print("Going to slide state")
 #	if owner.is_on_floor() and event.is_action_pressed("jump"):
@@ -55,6 +63,15 @@ func exit() -> void:
 	pass
 #	$Air.disconnect("jumped", $Idle.jump_delay, "start")
 
+
+
+func _on_EnemyDetector_enemy_collected():
+	friction = momentum_friction
+	momentum_timer.start()
+	
+
+func _on_MomentumTimer_timeout():
+	friction = friction_default
 
 static func calculate_velocity(
 		old_velocity: Vector2,

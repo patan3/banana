@@ -12,6 +12,12 @@ current = true
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 977, 745 )
 
+[node name="MomentumTimer" parent="Player/StateMachine/Move/Slide" index="0"]
+wait_time = 5.0
+
+[node name="CooldownTimer" parent="Player/StateMachine/Move/Slide" index="1"]
+wait_time = 1.0
+
 [node name="EnemyTmp" parent="." instance=ExtResource( 2 )]
 position = Vector2( 402, 587 )
 
