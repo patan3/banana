@@ -5,6 +5,7 @@ const ENEMIES_LAYER: = 1
 
 signal enemy_collected(enemy_counter)
 signal score_updated(score)
+signal multipliers_resetted
 
 var player_global_position
 
@@ -50,3 +51,4 @@ func update_score(new_score: float):
 func reset_multiplier_points():
 	slide_multiplier = 1.0
 	slide_points = 0.0
+	emit_signal("multipliers_resetted")
