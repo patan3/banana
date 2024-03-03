@@ -48,7 +48,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 0.65098, 0.835294, 0.843137, 1 ) ]
+"values": [ Color( 0.941176, 1, 0, 1 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -100,7 +100,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 0.65098, 0.835294, 0.843137, 1 ), Color( 1, 1, 1, 1 ), Color( 0.65098, 0.835294, 0.843137, 1 ), Color( 1, 1, 1, 1 ), Color( 0.65098, 0.835294, 0.843137, 1 ) ]
+"values": [ Color( 0.941176, 1, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 0.941176, 1, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 0.941176, 1, 0, 1 ) ]
 }
 
 [node name="Label" type="Label" groups=["point_labels"]]
