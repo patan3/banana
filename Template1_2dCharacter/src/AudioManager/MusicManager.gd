@@ -4,6 +4,7 @@ func play_music(sound_path, volume_db = 0, pitch_scale = 1.0):
 	var music = AudioStreamPlayer.new()
 	music.stream = load(sound_path)
 	music.volume_db = volume_db
+	music.autoplay = true
 	music.pitch_scale = pitch_scale
 	add_child(music)
 	music.play()
