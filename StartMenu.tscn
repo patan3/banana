@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://StartMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/Jost-VariableFont_wght.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/Journal.png" type="Texture" id=3]
+[ext_resource path="res://assets/Rainbow2000-ywgl3.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=1]
-size = 32
-font_data = ExtResource( 2 )
+size = 64
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 42
@@ -24,12 +25,19 @@ texture = ExtResource( 3 )
 expand = true
 
 [node name="StartButton" type="Button" parent="."]
-margin_left = 300.0
-margin_top = 336.0
-margin_right = 700.0
-margin_bottom = 406.0
+margin_left = 689.0
+margin_top = 439.0
+margin_right = 1089.0
+margin_bottom = 509.0
+rect_rotation = -7.28851
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color_focus = Color( 0.172549, 0.14902, 0.14902, 1 )
+custom_colors/font_color = Color( 0.172549, 0.168627, 0.145098, 1 )
+custom_colors/font_color_hover = Color( 0.172549, 0.14902, 0.14902, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "START"
+flat = true
 icon_align = 1
 
 [node name="Label" type="Label" parent="."]
