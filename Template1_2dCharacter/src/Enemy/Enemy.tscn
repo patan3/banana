@@ -184,5 +184,5 @@ mesh = SubResource( 1 )
 material/0 = SubResource( 6 )
 
 [node name="RednessTimer" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 45.0
 autostart = true
