@@ -13,7 +13,7 @@ func unhandled_input(event: InputEvent) -> void:
 	move.unhandled_input(event)
 
 
-func physics_process(delta: float) -> void:
+func physics_process(_delta: float) -> void:
 	var move: = get_parent()
 	if owner.is_on_floor() and move.get_move_direction().x != 0.0:
 		_state_machine.transition_to("Move/Run")
@@ -26,7 +26,7 @@ func enter(msg: Dictionary = {}) -> void:
 	move.enter(msg)
 	
 	move.max_speed = move.max_speed_default
-	move.velocity = Vector2.ZERO
+	move.velocity = Vector3.ZERO
 	if jump_delay.time_left > 0.0:
 		_state_machine.transition_to("Move/Air", { impulse = move.jump_impulse })
 		jump_delay.stop()

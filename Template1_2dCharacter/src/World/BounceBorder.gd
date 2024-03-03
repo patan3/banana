@@ -1,6 +1,6 @@
-extends Area2D
+extends Area
 
-export var bounce_direction: Vector2
+export var bounce_direction: Vector3
 
 func _ready():
 	connect("body_entered", self, "_on_BounceBorder_body_entered")

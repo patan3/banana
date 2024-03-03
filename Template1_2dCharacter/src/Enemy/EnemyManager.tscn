@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Template1_2dCharacter/src/Enemy/EnemyManager.gd" type="Script" id=1]
 [ext_resource path="res://Template1_2dCharacter/src/Enemy/Wave.gd" type="Script" id=2]
@@ -48,12 +48,13 @@ waveDuration = 6.0
 [node name="Wave_06" type="Node" parent="."]
 script = ExtResource( 2 )
 spawnInterval = 1.5
+
 [node name="Path" type="Path" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.95101, 0, 0 )
 curve = SubResource( 1 )
 
 [node name="PathFollow" type="PathFollow" parent="Path"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0170861, 0.000640753, -0.897256 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0170861, 0.000640751, -0.897255 )
 offset = 4.1616
 
 [node name="Path2" type="Path" parent="."]
@@ -61,5 +62,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.98301, 0, 0 )
 curve = SubResource( 1 )
 
 [node name="PathFollow" type="PathFollow" parent="Path2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.029212, 0.0051519, 2.17058 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0292119, 0.0051519, 2.17058 )
 offset = 7.23363

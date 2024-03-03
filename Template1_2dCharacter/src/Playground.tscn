@@ -10,26 +10,21 @@
 [node name="Borders" type="Node2D" parent="."]
 
 [node name="BounceBorderT" parent="Borders" instance=ExtResource( 3 )]
-bounce_direction = Vector2( 0, -1 )
 
 [node name="BounceBorderB" parent="Borders" instance=ExtResource( 3 )]
 position = Vector2( 0, 624 )
-bounce_direction = Vector2( 0, -1 )
 
 [node name="BounceBorderR" parent="Borders" instance=ExtResource( 3 )]
 position = Vector2( 1024, -48 )
 rotation = 1.5708
-bounce_direction = Vector2( -1, 0 )
 
 [node name="BounceBorderL" parent="Borders" instance=ExtResource( 3 )]
 position = Vector2( -24, -48 )
 rotation = 1.5708
-bounce_direction = Vector2( -1, 0 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 635, 278 )
 
 [node name="Move" parent="Player/StateMachine" index="0"]
 max_speed_default = Vector2( 500, 500 )

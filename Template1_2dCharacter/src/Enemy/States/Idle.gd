@@ -14,7 +14,7 @@ var initial_direction : Vector3
 var currentRandom = 0.0
 var targetRandom = 0.0
 
-func unhandled_input(event: InputEvent) -> void:
+func unhandled_input(_event: InputEvent) -> void:
 	return
 
 
@@ -24,9 +24,8 @@ func physics_process(delta: float) -> void:
 	owner.move_and_slide( velocity * speed * delta)
 
 
-func enter(msg: Dictionary = {}) -> void:
+func enter(_msg: Dictionary = {}) -> void:
 	initial_direction = Vector3(owner.direction, 0.0, 0.0).normalized()
-	print(initial_direction)
 	currentModulator = Utils.choose([MODULATOR.SIN, MODULATOR.LINE, MODULATOR.RANDOM])
 
 

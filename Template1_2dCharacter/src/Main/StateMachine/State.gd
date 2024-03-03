@@ -11,15 +11,15 @@ Use State as a child of a StateMachine node.
 onready var _state_machine: = _get_state_machine(self)
 
 
-func unhandled_input(event: InputEvent) -> void:
+func unhandled_input(_event: InputEvent) -> void:
 	return
 
 
-func physics_process(delta: float) -> void:
+func physics_process(_delta: float) -> void:
 	return
 
 
-func enter(msg: Dictionary = {}) -> void:
+func enter(_msg: Dictionary = {}) -> void:
 	return
 
 

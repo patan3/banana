@@ -1,16 +1,16 @@
-extends KinematicBody2D
+extends KinematicBody
 class_name Player
 
 signal bounce
 
 onready var state_machine: StateMachine = $StateMachine
 onready var skin: = $Skin
-onready var enemy_detector: Area2D = $EnemyDetector
+onready var enemy_detector: Area = $EnemyDetector
 
-onready var collider: CollisionShape2D = $CollisionShape2D
+onready var collider: CollisionShape = $CollisionShape2D
 
 
-const FLOOR_NORMAL: = Vector2.UP
+const FLOOR_NORMAL: = Vector3.UP
 
 var is_active: = true setget set_is_active
 
@@ -23,6 +23,7 @@ func set_is_active(value: bool) -> void:
 		return
 	collider.disabled = not value
 
-func _physics_process(delta):
-	Globals.player_global_position = global_position
+func _physics_process(_delta):
+	print(state_machine.state.name)
+	Globals.player_global_position = global_transform.origin
 

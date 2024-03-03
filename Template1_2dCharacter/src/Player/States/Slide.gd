@@ -11,10 +11,10 @@ signal slide_ended
 
 onready var cooldown_timer: Timer = get_node("CooldownTimer")
 
-export var slide_break_threashold: float = 100.0
-export var slide_acceleration: float = 15
-export var slide_friction: float = 5
-export var max_speed_friction: Vector2 = Vector2(800.0, 800.0)
+export var slide_break_threashold: float = 0.5
+export var slide_acceleration: float = 7
+export var slide_friction: float = 2
+export var max_speed_friction: Vector3 = Vector3(80.0, 0.0, 80.0)
 export var initial_slide_push_factor: float = 1.2
 
 func unhandled_input(event: InputEvent) -> void:
@@ -27,7 +27,7 @@ func unhandled_input(event: InputEvent) -> void:
 func physics_process(delta: float) -> void:
 	var move: = get_parent()
 	move.physics_process(delta)
-	if move.velocity.distance_to(Vector2.ZERO) < slide_break_threashold:
+	if move.velocity.distance_to(Vector3.ZERO) < slide_break_threashold:
 		_state_machine.transition_to("Move", { velocity = move.velocity })
 
 

@@ -4,17 +4,17 @@ Takes control away from the player and makes the character spawn
 """
 
 
-var _start_position: = Vector2.ZERO
+var _start_position: = Vector3.ZERO
 
 
 func _ready() -> void:
 	yield(owner, "ready")
-	_start_position = owner.position
+	_start_position = owner.transform.origin
 
 
 
 
-func enter(msg: Dictionary = {}) -> void:
+func enter(_msg: Dictionary = {}) -> void:
 	owner.is_active = false
 	owner.position = _start_position
 	owner.skin.play("spawn")
@@ -27,5 +27,5 @@ func exit() -> void:
 
 
 
-func _on_Player_animation_finished(anim_name: String) -> void:
+func _on_Player_animation_finished(_anim_name: String) -> void:
 	_state_machine.transition_to('Move/Idle')

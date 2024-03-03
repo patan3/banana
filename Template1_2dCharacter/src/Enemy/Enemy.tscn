@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Template1_2dCharacter/src/Enemy/States/Idle.gd" type="Script" id=1]
 [ext_resource path="res://Template1_2dCharacter/src/Main/StateMachine/StateMachine.gd" type="Script" id=2]
+[ext_resource path="res://assets/models/elvis.glb" type="PackedScene" id=3]
 [ext_resource path="res://Template1_2dCharacter/src/Enemy/Enemy.gd" type="Script" id=4]
 
 [sub_resource type="SphereShape" id=5]
@@ -10,7 +11,7 @@ radius = 0.652525
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("skin:translation")
+tracks/0/path = NodePath("elvis:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -22,7 +23,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("skin:rotation_degrees")
+tracks/1/path = NodePath("elvis:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -34,7 +35,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("skin:scale")
+tracks/2/path = NodePath("elvis:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -43,63 +44,86 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0.5, 0.5, 0.5 ) ]
+"values": [ Vector3( 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=3]
 resource_name = "flip"
-length = 0.75
 tracks/0/type = "value"
-tracks/0/path = NodePath("skin:translation")
-tracks/0/interp = 1
+tracks/0/path = NodePath("elvis:translation")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.76032, 0.781382 ) ]
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 1.62477, -0.39882 ), Vector3( 0, 0.202754, 1.10996 ), Vector3( 0, 0.440909, 1.138 ), Vector3( 0, 0.202754, 1.10996 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("skin:rotation_degrees")
-tracks/1/interp = 1
+tracks/1/path = NodePath("elvis:rotation_degrees")
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.4, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 98.231, 0, 0 ) ]
+"values": [ Vector3( 0, 0, 0 ), Vector3( -13.827, 0, 0 ), Vector3( 58.313, 0, 0 ), Vector3( 93.315, 0, 0 ), Vector3( 95.5026, 0, 0 ), Vector3( 93.315, 0, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("skin:scale")
-tracks/2/interp = 1
+tracks/2/path = NodePath("elvis:scale")
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0.5, 0.5, 0.5 ), Vector3( 0.5, 0.5, 0.5 ), Vector3( 0, 0, 0 ) ]
+"values": [ Vector3( 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=4]
 resource_name = "idle"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("skin:scale")
-tracks/0/interp = 1
+tracks/0/path = NodePath("elvis:translation")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -0.126485, -0.00645185, -0.0411108 ), Vector3( 0.09, -0.005, -0.029 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("elvis:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 4.78348, 1.02111, 12.0647 ), Vector3( 3.417, -0.729, -8.618 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("elvis:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0.5, 0.5, 0.5 ), Vector3( 0.5, 0.3, 0.5 ) ]
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 0.887, 1 ) ]
 }
 
 [node name="Enemy" type="KinematicBody" groups=["enemies"]]
@@ -124,17 +148,4 @@ anims/RESET = SubResource( 2 )
 anims/flip = SubResource( 3 )
 anims/idle = SubResource( 4 )
 
-[node name="skin" type="CSGBox" parent="."]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
-width = 1.5
-height = 1.5
-depth = 1.5
-
-[node name="CSGTorus" type="CSGTorus" parent="skin"]
-transform = Transform( 0.96584, 0.259139, 0, -0.259139, 0.96584, 0, 0, 0, 1, -0.0141227, 0.842366, -0.00862217 )
-inner_radius = 0.147844
-outer_radius = 0.923371
-
-[node name="CSGSphere" type="CSGSphere" parent="skin"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152191, 1.36298, 0 )
-radius = 0.67477
+[node name="elvis" parent="." instance=ExtResource( 3 )]

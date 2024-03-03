@@ -21,7 +21,7 @@ func _ready():
 	connect("enemy_collected", self, "_on_Globals_enemy_collected")
 
 
-func _process(delta):
+func _process(_delta):
 	pass
 #	print("Score: " + str(score) + "     Multiplier: " + str(slide_multiplier) + "     Slide Points: " + str(slide_points))
 

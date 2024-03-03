@@ -35,7 +35,7 @@ func _on_Slide_slide_ended():
 
 func set_is_active(value: bool):
 	is_active = value
-	get_node("CollisionShape2D").set_deferred("disabled", not value)
+	get_node("Collision").set_disabled(not value)
 
 
 
