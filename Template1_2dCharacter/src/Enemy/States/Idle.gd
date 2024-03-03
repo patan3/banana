@@ -8,7 +8,8 @@ enum MODULATOR {
 
 var currentModulator
 
-export var speed = 500.0
+export var speedMinMax = Vector2(25.0, 50.0)
+var speed = 25.0
 var initial_direction : Vector3
 
 var currentRandom = 0.0
@@ -27,6 +28,7 @@ func physics_process(delta: float) -> void:
 func enter(_msg: Dictionary = {}) -> void:
 	initial_direction = Vector3(owner.direction, 0.0, 0.0).normalized()
 	currentModulator = Utils.choose([MODULATOR.SIN, MODULATOR.LINE, MODULATOR.RANDOM])
+	speed = rand_range(speedMinMax.x, speedMinMax.y)
 
 
 func exit() -> void:

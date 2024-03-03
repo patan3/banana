@@ -1,7 +1,7 @@
 extends Spatial
 
-onready var spawnPathRight : PathFollow = get_node("Path/PathFollow")
-onready var spawnPathLeft : PathFollow = get_node("Path2/PathFollow")
+onready var spawnPathRight : Area = get_node("SpawnArea_R")
+onready var spawnPathLeft : Area = get_node("SpawnArea_L")
 
 onready var waves : Array = find_waves()
 var betweenWaves = false
@@ -15,6 +15,9 @@ onready var timerWave = get_node("WaveTimer")
 enum SIDE {TOP, RIGHT, LEFT, BOTTOM}
 	
 func _ready():
+	spawnPathLeft.connect("body_entered", self, "enemy_entered_left_path")
+	spawnPathRight.connect("body_entered", self, "enemy_entered_right_path")
+	
 	timer.connect("timeout", self, "spawn")
 	timerWave.connect("timeout", self, "wave_end")
 	if waves.empty():
@@ -22,17 +25,41 @@ func _ready():
 	timer.wait_time = waves[waveIndex].spawnInterval
 	timerWave.wait_time = waves[waveIndex].waveDuration
 
-func generate_position() -> Vector3:
-	var path : PathFollow = Utils.choose([spawnPathRight, spawnPathLeft])
+
+func enemy_entered_left_path(body : Node):
+	if body.is_in_group("enemies"):
+		if body.direction == 1:
+			print("lose_point")
 	
+func enemy_entered_right_path(body : Node):
+	if body.is_in_group("enemies"):
+		if body.direction == -1:
+			print("lose_point")
+
+func generate_position() -> Vector3:
 	var side = Utils.choose([SIDE.LEFT, SIDE.RIGHT])
 	
 	match side:
 		SIDE.LEFT:
-			path.unit_offset = randf()
-			return path.global_transform.origin
+			var shape : BoxShape = spawnPathLeft.get_child(0).shape
+			var randomZ = rand_range(
+				spawnPathLeft.global_transform.origin.z - shape.extents.z,
+				spawnPathLeft.global_transform.origin.z + shape.extents.z)
+			var pos = Vector3(
+				spawnPathLeft.global_transform.origin.x,
+				spawnPathLeft.global_transform.origin.y,
+				randomZ)
+			return pos
 		SIDE.RIGHT:
-			return path.global_transform.origin
+			var shape : BoxShape = spawnPathLeft.get_child(0).shape
+			var randomZ = rand_range(
+				spawnPathRight.global_transform.origin.z - shape.extents.z,
+				spawnPathRight.global_transform.origin.z + shape.extents.z)
+			var pos = Vector3(
+				spawnPathRight.global_transform.origin.x,
+				spawnPathRight.global_transform.origin.y,
+				randomZ)
+			return pos
 		_:
 			return Vector3.ZERO
 
