@@ -36,9 +36,9 @@ func _ready():
 func unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("slide") and cooldown_timer.is_stopped() and _state_machine._state_name!="Slide":
 		_state_machine.transition_to("Move/Slide")
-		print("Going to slide state")
-	elif !cooldown_timer.is_stopped():
-		owner.skin.sprite.set_modulate(Color(0.0, 0.5, 0.0, 1.0))
+#		print("Going to slide state")
+#	elif !cooldown_timer.is_stopped():
+#		owner.skin.sprite.set_modulate(Color(0.0, 0.5, 0.0, 1.0))
 #	if owner.is_on_floor() and event.is_action_pressed("jump"):
 #		_state_machine.transition_to("Move/Air", { impulse = jump_impulse })
 #	if event.is_action_pressed('toggle_debug_move'):
@@ -76,12 +76,32 @@ func physics_process(_delta: float) -> void:
 #		velocity = velocity.lerp(Vector2.ZERO, friction)
 	velocity.x = clamp(velocity.x, -max_speed.x, max_speed.x)
 	velocity.z = clamp(velocity.z, -max_speed.z, max_speed.z)
+	
+	if velocity.distance_to(Vector3.ZERO) > 0.05 and _state_machine._state_name == "Move":
+		if !cooldown_timer.is_stopped():
+			owner.skin.play("run_naked")
+		else:
+			owner.skin.play("run")
+
+	if velocity.x > 0:
+		owner.skin.flip_sprites_h(false)
+	elif velocity.x < 0 :
+		owner.skin.flip_sprites_h(true)
+	
+	if velocity.distance_to(Vector3.ZERO) < 0.05:
+		owner.skin.play("idle")
 	velocity = owner.move_and_slide(velocity)
 
 
 func enter(msg: Dictionary = {}) -> void:
 #	$Air.connect("jumped", $Idle.jump_delay, "start")
-	owner.skin.play("run")
+	if velocity.distance_to(Vector3.ZERO) < 0.05:
+		owner.skin.play("idle")
+	else:
+		if !cooldown_timer.is_stopped():
+			owner.skin.play("run_naked")
+		else:
+			owner.skin.play("run")
 	if "velocity" in msg:
 		velocity = msg.velocity 
 
@@ -102,7 +122,8 @@ func _on_MomentumTimer_timeout():
 
 
 func _on_CooldownTimer_timeout():
-	owner.skin.sprite.set_modulate(Color(1.0, 1.0, 1.0, 1.0))
+#	owner.skin.sprite.set_modulate(Color(1.0, 1.0, 1.0, 1.0))
+	owner.skin.play("run")
 
 
 func _on_Player_bounce(bounce_direction: Vector3):

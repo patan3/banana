@@ -25,7 +25,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.536042, 0 )
 shape = SubResource( 1 )
 
 [node name="Skin" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 0.89812, -0.439751, 0, 0.439751, 0.89812, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 0.89812, -0.439751, 0, 0.439751, 0.89812, 0, -0.589598, 0 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 5 )

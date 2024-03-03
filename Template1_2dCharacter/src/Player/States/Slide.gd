@@ -37,7 +37,7 @@ func enter(msg: Dictionary = {}) -> void:
 	emit_signal("slide_started")
 	owner.set_collision_mask_bit(Globals.WORLD_LAYER, false)
 #	owner.set_collision_mask_bit(Globals.ENEMIES_LAYER, false)
-	owner.skin.play("run_naked")
+	owner.skin.play("trap")
 	owner.enemy_detector.is_active = true
 	
 	move.can_move = false
@@ -63,6 +63,7 @@ func exit() -> void:
 	move.acceleration = move.acceleration_default
 	move.max_speed = move.max_speed_default
 	cooldown_timer.start()
+	owner.skin.play("run_naked")
 	
 	owner.set_collision_mask_bit(Globals.WORLD_LAYER, true)
 #	owner.set_collision_mask_bit(Globals.ENEMIES_LAYER, true)
