@@ -26,7 +26,7 @@ func physics_process(delta: float) -> void:
 
 func enter(msg: Dictionary = {}) -> void:
 	initial_direction = Vector2(owner.direction, 0.0).normalized()
-	print(initial_direction)
+#	print(initial_direction)
 	currentModulator = Utils.choose([MODULATOR.SIN, MODULATOR.LINE, MODULATOR.RANDOM])
 
 
