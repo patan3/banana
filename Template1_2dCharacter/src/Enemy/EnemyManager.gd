@@ -79,6 +79,12 @@ func wave_end():
 		waveIndex += 1
 		print("waves: " + str(waveIndex + 1))
 		betweenWaves = false
+		print("wave end")
+		print(waves[waveIndex].music)
+		if waves[waveIndex].music != 'path':
+			print("condition")
+			MusicManager.stop_music()
+			MusicManager.play_music("res://Template1_2dCharacter/src/AudioManager/Music/banan_song_9mesures_150_bpm_part_03.wav")
 		timer.start(waves[waveIndex].spawnInterval)
 		timerWave.start(waves[waveIndex].waveDuration)
 

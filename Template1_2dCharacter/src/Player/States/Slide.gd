@@ -33,6 +33,7 @@ func physics_process(delta: float) -> void:
 
 func enter(msg: Dictionary = {}) -> void:
 	var move: = get_parent()
+	SfxManager.play_sfx("res://Template1_2dCharacter/src/AudioManager/SFX/splash_01.wav")
 	move.enter(msg)
 	emit_signal("slide_started")
 	owner.set_collision_mask_bit(Globals.WORLD_LAYER, false)

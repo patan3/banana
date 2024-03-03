@@ -18,7 +18,7 @@ func _ready():
 
 func _on_EnemyDetector_body_entered(body: Node):
 	if body.is_in_group("enemies"):
-		SfxManager.play_sfx("res://Template1_2dCharacter/src/AudioManager/SFX/Slip1.wav")
+		SfxManager.play_sfx("res://Template1_2dCharacter/src/AudioManager/SFX/heurte_personnage.wav")
 		enemy_counter += 1
 		Globals.emit_signal("enemy_collected", enemy_counter)
 		Globals.calculate(enemy_counter)

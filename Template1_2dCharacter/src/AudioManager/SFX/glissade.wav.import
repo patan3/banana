@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/glissade.wav-2ab1b2dfba89f7c2f26c68f9d4fe1939.sample"
+
+[deps]
+
+source_file="res://Template1_2dCharacter/src/AudioManager/SFX/glissade.wav"
+dest_files=[ "res://.import/glissade.wav-2ab1b2dfba89f7c2f26c68f9d4fe1939.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -6,6 +6,8 @@ enum MODULATOR {
 	RANDOM
 }
 
+onready var pivot = get_node("../../Position3D")
+
 var currentModulator
 
 export var speedMinMax = Vector2(25.0, 50.0)
@@ -23,6 +25,8 @@ func physics_process(delta: float) -> void:
 	var modulator = get_modulator(currentModulator, delta)
 	var velocity = initial_direction + Vector3(0.0, 0.0, modulator)
 	owner.move_and_slide( velocity * speed * delta)
+	velocity = velocity.normalized()
+	pivot.global_rotation.y = atan2(velocity.x, velocity.z) - (PI)
 
 
 func enter(_msg: Dictionary = {}) -> void:

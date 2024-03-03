@@ -33,6 +33,7 @@ func play(name: String, _data: Dictionary = {}) -> void:
 
 
 func play_sfx(path: String):
-	if owner.state_machine._state_name == "Move":
-		print(owner.state_machine._state_name == "Move")
-		SfxManager.play_sfx(path)
+	if owner.state_machine._state_name == "Move" :			
+		if Vector2(Input.get_action_strength("left") - Input.get_action_strength("right"),
+		Input.get_action_strength("up") - Input.get_action_strength("down")) != Vector2.ZERO:
+			SfxManager.play_sfx(path)
