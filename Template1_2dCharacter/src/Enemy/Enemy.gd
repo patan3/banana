@@ -17,8 +17,11 @@ func _ready():
 
 
 func _physics_process(delta):
-	pass
-	#skin.material_overlay
+	var modulator = (sin(Time.get_unix_time_from_system()*10.0) + 1)*0.5
+	var redness = lerp(modulator, 0.0, redTimer.time_left/redTimer.wait_time)
+	var material = skin.get_surface_material(0)
+	material.emission = Color(redness, 0.0, 0.0)
+	skin.set_surface_material(0, material)
 
 
 func _on_AnimationPlayer_animation_finished(anim_name: String):
