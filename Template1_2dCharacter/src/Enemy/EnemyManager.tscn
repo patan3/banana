@@ -26,6 +26,7 @@ waveDuration = 5.0
 script = ExtResource( 2 )
 spawnInterval = 0.5
 waveDuration = 2.0
+waveRecuperation = 6.0
 
 [node name="Wave_04" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -36,3 +37,7 @@ waveDuration = 20.0
 script = ExtResource( 2 )
 spawnInterval = 0.5
 waveDuration = 6.0
+
+[node name="Wave_06" type="Node" parent="."]
+script = ExtResource( 2 )
+spawnInterval = 1.5

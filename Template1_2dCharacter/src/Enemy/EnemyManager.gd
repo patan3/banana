@@ -39,14 +39,16 @@ func wave_end():
 	
 	if !betweenWaves:
 		betweenWaves = true
-		timerWave.start(3.0)
+		timerWave.start(waves[waveIndex].waveRecuperation)
 		timer.stop()
 	else:
+		if waveIndex >= waves.size() - 1:
+			printerr("NO MORE WAVES")
+			timer.start(waves[waveIndex].spawnInterval)
+			timerWave.stop()
+			return
 		waveIndex += 1
 		print("waves: " + str(waveIndex + 1))
-		if waveIndex >= waves.size():
-			printerr("NO MORE WAVES")
-			return
 		betweenWaves = false
 		timer.start(waves[waveIndex].spawnInterval)
 		timerWave.start(waves[waveIndex].waveDuration)
