@@ -39,7 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Banana"
-run/main_scene="res://GameManager.tscn"
+run/main_scene="res://Template1_2dCharacter/src/Game.tscn"
 config/icon="res://icon.png"
 
 [autoload]
