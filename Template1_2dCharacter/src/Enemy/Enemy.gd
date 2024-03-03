@@ -7,6 +7,7 @@ var direction
 onready var _initial_position: = global_transform.origin
 
 onready var animation_player: AnimationPlayer = get_node("AnimationPlayer")
+#onready var 
 
 
 export var is_active: bool = true setget set_is_active
