@@ -16,7 +16,7 @@ visible = false
 use_collision = false
 
 [node name="road" parent="." instance=ExtResource( 3 )]
-transform = Transform( -0.888278, 0, -7.76558e-08, 0, 0.7, 0, 6.11959e-08, 0, -0.7, 0, 0, 0 )
+transform = Transform( -0.888278, 0, -7.76558e-08, 0, 0.7, 0, 6.11959e-08, 0, -0.7, 0, -0.16474, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 
