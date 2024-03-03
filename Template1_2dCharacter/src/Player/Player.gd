@@ -24,6 +24,5 @@ func set_is_active(value: bool) -> void:
 	collider.disabled = not value
 
 func _physics_process(_delta):
-	print(state_machine.state.name)
 	Globals.player_global_position = global_transform.origin
 
