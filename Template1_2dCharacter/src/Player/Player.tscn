@@ -47,6 +47,7 @@ script = ExtResource( 8 )
 
 [node name="Slide" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 2 )
+max_speed_friction = Vector3( 40, 0, 40 )
 
 [node name="MomentumTimer" type="Timer" parent="StateMachine/Move/Slide"]
 wait_time = 5.0

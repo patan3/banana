@@ -1,5 +1,4 @@
-tool
-extends CanvasLayer
+extends Node
 
 onready var score_label: Label = get_node("VBoxContainer/Score")
 
@@ -10,16 +9,18 @@ func _ready():
 	Globals.connect("multipliers_resetted", self, "_on_Globals_multipliers_resetted")
 
 
-
 func _on_Globals_enemy_collected(enemy_counter: int):
-	update_multiplier_labels(Globals.slide_multiplier, Globals.slide_points)
+	pass
+#	update_multiplier_labels(Globals.slide_multiplier, Globals.slide_points)
 
 func _on_Globals_score_updated(new_score: int):
-	score_label.text = str(new_score)
-	score_label.get_node("AnimationPlayer").play("rotate")
+	pass
+#	score_label.text = str(new_score)
+#	score_label.get_node("AnimationPlayer").play("rotate")
 
-func _on_Globals_multipliers_resetted():
-	update_multiplier_labels(1.0, 0.0)
+func _on_Globals_multipliers_resetted():\
+	pass
+#	update_multiplier_labels(1.0, 0.0)
 
 
 func update_multiplier_labels(multiplier_value: float, slide_points_value: float):

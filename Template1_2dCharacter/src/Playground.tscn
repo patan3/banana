@@ -12,15 +12,10 @@
 [node name="BounceBorderT" parent="Borders" instance=ExtResource( 3 )]
 
 [node name="BounceBorderB" parent="Borders" instance=ExtResource( 3 )]
-position = Vector2( 0, 624 )
 
 [node name="BounceBorderR" parent="Borders" instance=ExtResource( 3 )]
-position = Vector2( 1024, -48 )
-rotation = 1.5708
 
 [node name="BounceBorderL" parent="Borders" instance=ExtResource( 3 )]
-position = Vector2( -24, -48 )
-rotation = 1.5708
 
 [node name="EnemyManager" parent="." instance=ExtResource( 2 )]
 
