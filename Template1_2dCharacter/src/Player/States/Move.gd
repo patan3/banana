@@ -21,6 +21,9 @@ onready var friction = friction_default
 onready var momentum_friction = momentum_friction_default
 onready var bump_factor = bump_factor_default
 
+var walk_sfx_cooldown := 0.0  # Initialize cooldown timer.
+var walk_flag := 0
+
 var can_move: bool = true
 
 func _ready():
@@ -43,29 +46,24 @@ func unhandled_input(event: InputEvent) -> void:
 
 
 func physics_process(_delta: float) -> void:
-	# Once again, we call `Input.get_action_strength()` to support analog movement.
 	var direction := Vector3(
-		# This first line calculates the X direction, the vector's first component.
 		Input.get_action_strength("left") - Input.get_action_strength("right"),
-		# And here, we calculate the Y direction. Note that the Y-axis points 
-		# DOWN in games.
-		# That is to say, a Y value of `1.0` points downward.
 		0.0,
 		Input.get_action_strength("up") - Input.get_action_strength("down")
 	)
-	# When aiming the joystick diagonally, the direction vector can have a length 
-	# greater than 1.0, making the character move faster than our maximum expected
-	# speed. When that happens, we limit the vector's length to ensure the player 
-	# can't go beyond the maximum speed.
-#	if direction.length() > 1.0:
-#		direction = direction.normalized()
-#	# Using the follow steering behavior.
-#	var target_velocity = direction * max_speed
-##	print("Target velocity:   " + str(target_velocity) + " - " + "velocity:   "+str(velocity) + " * " + str(friction))
-#	velocity += (target_velocity - velocity) * (1-friction) * _delta
-##	print("Resulting velocity: " + str(velocity))
-#	velocity.x = clamp(velocity.x, -max_speed.x, max_speed.x)
-#	velocity.y = clamp(velocity.y, -max_speed.y, max_speed.y)
+
+#	if direction != Vector3.ZERO:
+#		if walk_sfx_cooldown > 0:
+#			walk_sfx_cooldown -= _delta
+#		else:
+#			walk_sfx_cooldown = 0.2
+#			if walk_flag == 0:
+#				walk_flag = 1
+#				SfxManager.play_sfx("res://Template1_2dCharacter/src/AudioManager/SFX/Spongebob1.wav")
+#			else:
+#				walk_flag = 0
+#				SfxManager.play_sfx("res://Template1_2dCharacter/src/AudioManager/SFX/Spongebob2.wav")
+	
 	if can_move:
 		direction = get_input()
 	else:

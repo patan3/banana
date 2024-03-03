@@ -18,12 +18,15 @@ var final_slide_score: float = 0.0
 
 
 
-
+func _ready():
+	connect("enemy_collected", self, "_on_Globals_enemy_collected")
 
 func _process(_delta):
 	pass
-#	print("Score: " + str(score) + "     Multiplier: " + str(slide_multiplier) + "     Slide Points: " + str(slide_points))
 
+
+func _on_Globals_enemy_collected(enemy_counter: float):
+	calculate(enemy_counter)
 
 func calculate(value: int, points: float = 50.0):
 	if value > 0 and value < 2:
@@ -41,6 +44,7 @@ func calculate_slide_points():
 
 func update_score(new_score: float):
 	score = score + new_score
+	emit_signal("score_updated", score)
 	reset_multiplier_points()
 
 func reset_multiplier_points():

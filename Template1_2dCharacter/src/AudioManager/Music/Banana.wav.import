@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Banana.wav-f64958a5f5b6ce5a195206c93d74ad08.sample"
+
+[deps]
+
+source_file="res://Template1_2dCharacter/src/AudioManager/Music/Banana.wav"
+dest_files=[ "res://.import/Banana.wav-f64958a5f5b6ce5a195206c93d74ad08.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

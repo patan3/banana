@@ -13,6 +13,7 @@ func _on_Globals_enemy_collected(enemy_counter: int):
 	update_multiplier_labels(Globals.slide_multiplier, Globals.slide_points)
 
 func _on_Globals_score_updated(new_score: int):
+	print("Update the text of the score")
 	score_label.text = str(new_score)
 	score_label.get_node("AnimationPlayer").play("rotate")
 

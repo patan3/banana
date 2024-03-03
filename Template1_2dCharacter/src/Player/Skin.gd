@@ -25,3 +25,9 @@ func play(name: String, _data: Dictionary = {}) -> void:
 	assert(name in anim.get_animation_list())
 #	anim.stop()
 	anim.play(name)
+
+
+func play_sfx(path: String):
+	if owner.state_machine._state_name == "Move":
+		print(owner.state_machine._state_name == "Move")
+		SfxManager.play_sfx(path)
