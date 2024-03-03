@@ -39,7 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Banana"
-run/main_scene="res://Template1_2dCharacter/src/Playground_pierre.tscn"
+run/main_scene="res://GameManager.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -48,6 +48,7 @@ Utils="*res://Template1_2dCharacter/src/Utils.gd"
 Globals="*res://Globals.gd"
 MusicManager="*res://Template1_2dCharacter/src/AudioManager/MusicManager.gd"
 SfxManager="*res://Template1_2dCharacter/src/AudioManager/SFXManager.gd"
+GameManager="*res://GameManager.gd"
 
 [display]
 
