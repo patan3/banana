@@ -25,7 +25,7 @@ func physics_process(delta: float) -> void:
 	owner.position += velocity * delta
 
 
-func enter(msg: Dictionary = {}):
+func enter(_msg: Dictionary = {}):
 	owner.is_active = false
 
 

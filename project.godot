@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "KinematicBody2D",
+"base": "KinematicBody",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Template1_2dCharacter/src/Player/Player.gd"
@@ -23,17 +23,23 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://Template1_2dCharacter/src/Main/StateMachine/StateMachine.gd"
+}, {
+"base": "Node",
+"class": "Wave",
+"language": "GDScript",
+"path": "res://Template1_2dCharacter/src/Enemy/Wave.gd"
 } ]
 _global_script_class_icons={
 "Player": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"Wave": ""
 }
 
 [application]
 
 config/name="Banana"
-run/main_scene="res://GameManager.tscn"
+run/main_scene="res://Template1_2dCharacter/src/Playground_pierre.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -45,6 +51,7 @@ SfxManager="*res://Template1_2dCharacter/src/AudioManager/SFXManager.gd"
 
 [display]
 
+window/size/always_on_top=true
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 

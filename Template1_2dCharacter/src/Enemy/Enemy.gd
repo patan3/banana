@@ -1,18 +1,15 @@
-extends KinematicBody2D
+extends KinematicBody
 
 signal player_entered
 
 var direction
 
-onready var _initial_position: = global_position
+onready var _initial_position: = global_transform.origin
 
 onready var animation_player: AnimationPlayer = get_node("AnimationPlayer")
 
 
 export var is_active: bool = true setget set_is_active
-
-var speed: Vector2
-
 
 func _ready():
 	animation_player.connect("animation_finished", self, "_on_AnimationPlayer_animation_finished")

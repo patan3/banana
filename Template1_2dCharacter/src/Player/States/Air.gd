@@ -22,7 +22,7 @@ func unhandled_input(event: InputEvent) -> void:
 	var move: = get_parent()
 	# Jump after falling off a ledge
 	if event.is_action_pressed("jump"):
-		if move.velocity.y >= 0.0 and jump_delay.time_left > 0.0 and owner.is_falling:
+		if move.velocity.z >= 0.0 and jump_delay.time_left > 0.0 and owner.is_falling:
 			move.velocity = calculate_jump_velocity(move.jump_impulse)
 		emit_signal("jumped")
 	else:

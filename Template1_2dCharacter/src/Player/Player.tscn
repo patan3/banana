@@ -13,22 +13,19 @@
 [ext_resource path="res://Template1_2dCharacter/src/Player/States/Spawn.gd" type="Script" id=12]
 [ext_resource path="res://Template1_2dCharacter/src/Player/States/Die.gd" type="Script" id=13]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20, 24.5 )
+[sub_resource type="SphereShape" id=1]
+radius = 0.609867
 
-[node name="Player" type="KinematicBody2D"]
-collision_mask = 14
+[node name="Player" type="KinematicBody"]
+collision_mask = 12
 script = ExtResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -5.5 )
+[node name="CollisionShape2D" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.536042, 0 )
 shape = SubResource( 1 )
 
 [node name="Skin" parent="." instance=ExtResource( 4 )]
-scale = Vector2( 0.817, 0.566 )
-
-[node name="banana" parent="Skin" index="2"]
-position = Vector2( 4, 38.3845 )
+transform = Transform( 1, 0, 0, 0, 0.89812, -0.439751, 0, 0.439751, 0.89812, 0, 0, 0 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -36,6 +33,10 @@ initial_state = NodePath("Move")
 
 [node name="Move" type="Node" parent="StateMachine"]
 script = ExtResource( 6 )
+acceleration_default = 8.0
+friction_default = 10.0
+momentum_friction_default = 1.5
+max_speed_default = Vector3( 7, 0, 7 )
 bump_factor_default = 3.0
 
 [node name="Idle" type="Node" parent="StateMachine/Move"]
@@ -50,14 +51,14 @@ script = ExtResource( 8 )
 
 [node name="Slide" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 2 )
-slide_friction = 0.072
+slide_friction = 4.0
+max_speed_friction = Vector3( 40, 0, 40 )
 
 [node name="MomentumTimer" type="Timer" parent="StateMachine/Move/Slide"]
-wait_time = 3.0
+wait_time = 5.0
 one_shot = true
 
 [node name="CooldownTimer" type="Timer" parent="StateMachine/Move/Slide"]
-wait_time = 1.5
 one_shot = true
 
 [node name="Air" type="Node" parent="StateMachine/Move"]
@@ -78,6 +79,5 @@ script = ExtResource( 12 )
 script = ExtResource( 13 )
 
 [node name="EnemyDetector" parent="." instance=ExtResource( 3 )]
-position = Vector2( -1, -16 )
 
 [editable path="Skin"]

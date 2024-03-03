@@ -1,4 +1,4 @@
-extends Position2D
+extends Position3D
 """
 The player's animated skin. Provides a simple interface to play animations.
 """
@@ -6,8 +6,8 @@ The player's animated skin. Provides a simple interface to play animations.
 
 signal animation_finished(name)
 
-onready var sprite: Sprite = $banana
-onready var anim: AnimationPlayer = $AnimationPlayer
+onready var sprite: Sprite3D = get_node("pivot/banana")
+onready var anim: AnimationPlayer = get_node("AnimationPlayer")
 
 
 func _ready() -> void:
@@ -18,7 +18,7 @@ func _on_Anim_animation_finished(name: String) -> void:
 	emit_signal("animation_finished", name)
 
 
-func play(name: String, data: Dictionary = {}) -> void:
+func play(name: String, _data: Dictionary = {}) -> void:
 	"""
 	Plays the requested animation and safeguards against errors
 	"""

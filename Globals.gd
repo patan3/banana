@@ -3,6 +3,9 @@ extends Node
 const WORLD_LAYER: = 2
 const ENEMIES_LAYER: = 1
 
+signal enemy_collected(enemy_counter)
+signal score_updated(score)
+signal multipliers_resetted
 
 var player_global_position
 
@@ -17,8 +20,9 @@ var final_slide_score: float = 0.0
 
 
 
-func _process(delta):
-	print("Score: " + str(score) + "     Multiplier: " + str(slide_multiplier) + "     Slide Score: " + str(final_slide_score))
+func _process(_delta):
+	pass
+#	print("Score: " + str(score) + "     Multiplier: " + str(slide_multiplier) + "     Slide Points: " + str(slide_points))
 
 
 func calculate(value: int, points: float = 50.0):
@@ -42,3 +46,4 @@ func update_score(new_score: float):
 func reset_multiplier_points():
 	slide_multiplier = 1.0
 	slide_points = 0.0
+	emit_signal("multipliers_resetted")
