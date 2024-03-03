@@ -3,12 +3,8 @@
 [ext_resource path="res://Template1_2dCharacter/src/Enemy/EnemyManager.gd" type="Script" id=1]
 [ext_resource path="res://Template1_2dCharacter/src/Enemy/Wave.gd" type="Script" id=2]
 
-[sub_resource type="Curve3D" id=1]
-bake_interval = 0.01
-_data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -0.00104952, -0.00532532, -4.95452, 0, 0, 0, 0, 0, 0, -0.0392346, 0.00888062, 4.70632 ),
-"tilts": PoolRealArray( 0, 0 )
-}
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1, 1, 5.96295 )
 
 [node name="EnemyManager" type="Spatial"]
 script = ExtResource( 1 )
@@ -21,18 +17,18 @@ autostart = true
 
 [node name="Wave_01" type="Node" parent="."]
 script = ExtResource( 2 )
-spawnInterval = 2.0
-waveDuration = 5.0
+spawnInterval = 0.1
+waveDuration = 20.0
 
 [node name="Wave_02" type="Node" parent="."]
 script = ExtResource( 2 )
-spawnInterval = 1.5
-waveDuration = 5.0
+spawnInterval = 0.1
+waveDuration = 20.0
 
 [node name="Wave_03" type="Node" parent="."]
 script = ExtResource( 2 )
-spawnInterval = 0.5
-waveDuration = 2.0
+spawnInterval = 0.1
+waveDuration = 20.0
 waveRecuperation = 6.0
 
 [node name="Wave_04" type="Node" parent="."]
@@ -49,18 +45,18 @@ waveDuration = 6.0
 script = ExtResource( 2 )
 spawnInterval = 1.5
 
-[node name="Path" type="Path" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.95101, 0, 0 )
-curve = SubResource( 1 )
+[node name="SpawnArea_R" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0901, 0, 0 )
+collision_layer = 2
+collision_mask = 2
 
-[node name="PathFollow" type="PathFollow" parent="Path"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0170861, 0.000640751, -0.897255 )
-offset = 4.1616
+[node name="CollisionShape" type="CollisionShape" parent="SpawnArea_R"]
+shape = SubResource( 1 )
 
-[node name="Path2" type="Path" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.98301, 0, 0 )
-curve = SubResource( 1 )
+[node name="SpawnArea_L" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.11874, 0, 0 )
+collision_layer = 2
+collision_mask = 2
 
-[node name="PathFollow" type="PathFollow" parent="Path2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0292119, 0.0051519, 2.17058 )
-offset = 7.23363
+[node name="CollisionShape" type="CollisionShape" parent="SpawnArea_L"]
+shape = SubResource( 1 )
