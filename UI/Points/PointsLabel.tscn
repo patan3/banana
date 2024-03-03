@@ -1,4 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/Rainbow2000-ywgl3.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -104,13 +109,14 @@ tracks/3/keys = {
 }
 
 [node name="Label" type="Label" groups=["point_labels"]]
-modulate = Color( 0.65098, 0.835294, 0.843137, 1 )
+modulate = Color( 0.941176, 1, 0, 1 )
 margin_left = 60.0
 margin_top = 42.0
 margin_right = 100.0
 margin_bottom = 56.0
 rect_scale = Vector2( 1e-05, 1e-05 )
 rect_pivot_offset = Vector2( 20, 14 )
+custom_fonts/font = SubResource( 3 )
 text = "1.5"
 align = 1
 
