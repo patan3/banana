@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/banan_song_9mesures_150_bpm_part_03.wav-c50a65e0380c0f42adf1be5a0d800b68.sample"
+
+[deps]
+
+source_file="res://Template1_2dCharacter/src/AudioManager/Music/banan_song_9mesures_150_bpm_part_03.wav"
+dest_files=[ "res://.import/banan_song_9mesures_150_bpm_part_03.wav-c50a65e0380c0f42adf1be5a0d800b68.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
