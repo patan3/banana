@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Template1_2dCharacter/src/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Template1_2dCharacter/src/Enemy/EnemyManager.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Template1_2dCharacter/src/World/BounceBorder.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Template1_2dCharacter/src/Borders.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/Points/PointsMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://LooseMenu.tscn" type="PackedScene" id=5]
 
@@ -11,27 +11,7 @@
 [node name="EnemyManager" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0 )
 
-[node name="CSGBox" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.00325, 0 )
-use_collision = true
-width = 18.2728
-depth = 11.5196
-
-[node name="BounceBorder" parent="CSGBox" instance=ExtResource( 3 )]
-transform = Transform( 9.78351, 0, 0, 0, 1, 0, 0, 0, 1, -0.46703, 1.77682, 6.63964 )
-bounce_direction = Vector3( 0, 0, -1 )
-
-[node name="BounceBorder2" parent="CSGBox" instance=ExtResource( 3 )]
-transform = Transform( 9.78351, 0, 0, 0, 1, 0, 0, 0, 1, -0.457832, 1.89272, -6.49256 )
-bounce_direction = Vector3( 0, 0, -1 )
-
-[node name="BounceBorder3" parent="CSGBox" instance=ExtResource( 3 )]
-transform = Transform( 1.16735, 0, 0, 0, 1, 0, 0, 0, 7.20969, 10.0309, 1.89272, 0.554322 )
-bounce_direction = Vector3( -1, 0, 0 )
-
-[node name="BounceBorder4" parent="CSGBox" instance=ExtResource( 3 )]
-transform = Transform( 1.16735, 0, 0, 0, 1, 0, 0, 0, 7.20969, -9.99168, 1.89272, 0.554322 )
-bounce_direction = Vector3( -1, 0, 0 )
+[node name="Borders" parent="." instance=ExtResource( 3 )]
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1, 5.59965e-08, -6.71352e-08, 0, 0.767937, 0.640525, 8.74228e-08, 0.640525, -0.767937, 0, 8.046, -10.452 )

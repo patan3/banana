@@ -27,8 +27,6 @@ waveDuration = 20.0
 
 [node name="Wave_03" type="Node" parent="."]
 script = ExtResource( 2 )
-spawnInterval = 0.1
-waveDuration = 20.0
 waveRecuperation = 6.0
 
 [node name="Wave_04" type="Node" parent="."]
@@ -46,7 +44,7 @@ script = ExtResource( 2 )
 spawnInterval = 1.5
 
 [node name="SpawnArea_R" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0901, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0 )
 collision_layer = 2
 collision_mask = 2
 
@@ -54,7 +52,7 @@ collision_mask = 2
 shape = SubResource( 1 )
 
 [node name="SpawnArea_L" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.11874, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0 )
 collision_layer = 2
 collision_mask = 2
 
