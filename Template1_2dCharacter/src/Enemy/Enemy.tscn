@@ -143,6 +143,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="SpatialMaterial" id=6]
+resource_local_to_scene = true
 albedo_color = Color( 1, 0, 0, 1 )
 albedo_texture = ExtResource( 5 )
 emission_enabled = true
@@ -183,5 +184,5 @@ mesh = SubResource( 1 )
 material/0 = SubResource( 6 )
 
 [node name="RednessTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 30.0
 autostart = true
