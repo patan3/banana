@@ -5,15 +5,21 @@ Delegates movement to its parent Move state and extends it
 with state transitions
 """
 
+signal slide_started
+signal slide_ended
+
+
 onready var cooldown_timer: Timer = get_node("CooldownTimer")
 
-export var slide_friction: float = 0.0125
-export var max_speed_friction: Vector2 = Vector2(1000.0, 1000.0)
-
+export var slide_break_threashold: float = 100.0
+export var slide_acceleration: float = 15
+export var slide_friction: float = 5
+export var max_speed_friction: Vector2 = Vector2(800.0, 800.0)
+export var initial_slide_push_factor: float = 1.2
 
 func unhandled_input(event: InputEvent) -> void:
 	var move: = get_parent()
-	if event.is_action_released("slide"):
+	if event.is_action_pressed("slide"):
 		_state_machine.transition_to("Move", { velocity = move.velocity })
 	move.unhandled_input(event)
 
@@ -21,15 +27,24 @@ func unhandled_input(event: InputEvent) -> void:
 func physics_process(delta: float) -> void:
 	var move: = get_parent()
 	move.physics_process(delta)
+	if move.velocity.distance_to(Vector2.ZERO) < slide_break_threashold:
+		_state_machine.transition_to("Move", { velocity = move.velocity })
 
 
 func enter(msg: Dictionary = {}) -> void:
 	var move: = get_parent()
 	move.enter(msg)
+	emit_signal("slide_started")
+	owner.set_collision_mask_bit(Globals.WORLD_LAYER, false)
+#	owner.set_collision_mask_bit(Globals.ENEMIES_LAYER, false)
 	owner.skin.play("run_naked")
 	owner.enemy_detector.is_active = true
+	
+	move.can_move = false
 	move.friction = slide_friction
+	move.acceleration = slide_acceleration
 	move.max_speed = max_speed_friction
+	move.velocity += move.velocity * initial_slide_push_factor
 #### Old code to take as reference ####
 #	if "velocity" in msg:
 #		move.velocity = msg.velocity 
@@ -40,8 +55,16 @@ func enter(msg: Dictionary = {}) -> void:
 
 func exit() -> void:
 	var move: = get_parent()
+	emit_signal("slide_ended")
 	owner.enemy_detector.is_active = false
+	
+	move.can_move = true
 	move.friction = move.friction_default
+	move.acceleration = move.acceleration_default
 	move.max_speed = move.max_speed_default
 	cooldown_timer.start()
+	
+	owner.set_collision_mask_bit(Globals.WORLD_LAYER, true)
+#	owner.set_collision_mask_bit(Globals.ENEMIES_LAYER, true)
 	move.exit()
+

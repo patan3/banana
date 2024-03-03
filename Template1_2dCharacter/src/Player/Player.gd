@@ -1,6 +1,8 @@
 extends KinematicBody2D
 class_name Player
 
+signal bounce
+
 onready var state_machine: StateMachine = $StateMachine
 onready var skin: = $Skin
 onready var enemy_detector: Area2D = $EnemyDetector

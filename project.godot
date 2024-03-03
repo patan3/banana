@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://Template1_2dCharacter/src/Main/StateMachine/StateMachine.gd"
+}, {
+"base": "Node",
+"class": "Wave",
+"language": "GDScript",
+"path": "res://Template1_2dCharacter/src/Enemy/Wave.gd"
 } ]
 _global_script_class_icons={
 "Player": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"Wave": ""
 }
 
 [application]

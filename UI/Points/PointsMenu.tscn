@@ -1,0 +1,117 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://UI/Points/PointsLabel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/Points/PointsMenu.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_pivot_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 65, 14 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "rotate"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_pivot_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 65, 14 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.8 ),
+"transitions": PoolRealArray( -2, -0.5, 0.5, 1 ),
+"update": 0,
+"values": [ 0.0, 10.0, -5.0, 0.0 ]
+}
+
+[node name="PointsMenu" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 704.0
+margin_top = 48.0
+margin_right = 833.0
+margin_bottom = 128.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="Space" type="Control" parent="VBoxContainer"]
+margin_right = 129.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Score" type="Label" parent="VBoxContainer" groups=["score_label"]]
+margin_top = 14.0
+margin_right = 129.0
+margin_bottom = 28.0
+rect_pivot_offset = Vector2( 65, 14 )
+size_flags_horizontal = 3
+text = "0"
+align = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/Score"]
+anims/RESET = SubResource( 2 )
+anims/rotate = SubResource( 1 )
+
+[node name="Space2" type="Control" parent="VBoxContainer"]
+margin_top = 32.0
+margin_right = 129.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 41.0
+margin_right = 129.0
+margin_bottom = 55.0
+size_flags_horizontal = 3
+
+[node name="Multiplier" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 40.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "1"
+
+[node name="x" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 44.0
+margin_top = 0.0
+margin_right = 84.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "x"
+
+[node name="SlidePoints" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 88.0
+margin_top = 0.0
+margin_right = 129.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "0"
+
+[editable path="VBoxContainer/HBoxContainer/Multiplier"]
+[editable path="VBoxContainer/HBoxContainer/x"]
+[editable path="VBoxContainer/HBoxContainer/SlidePoints"]
