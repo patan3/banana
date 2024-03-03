@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Template1_2dCharacter/src/Enemy/States/Idle.gd" type="Script" id=1]
 [ext_resource path="res://Template1_2dCharacter/src/Main/StateMachine/StateMachine.gd" type="Script" id=2]
 [ext_resource path="res://assets/models/elvis.glb" type="PackedScene" id=3]
 [ext_resource path="res://Template1_2dCharacter/src/Enemy/Enemy.gd" type="Script" id=4]
@@ -11,7 +10,7 @@ radius = 0.652525
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("elvis:translation")
+tracks/0/path = NodePath("Position3D/elvis:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -23,7 +22,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("elvis:rotation_degrees")
+tracks/1/path = NodePath("Position3D/elvis:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -35,7 +34,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("elvis:scale")
+tracks/2/path = NodePath("Position3D/elvis:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -50,7 +49,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=3]
 resource_name = "flip"
 tracks/0/type = "value"
-tracks/0/path = NodePath("elvis:translation")
+tracks/0/path = NodePath("Position3D/elvis:translation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -62,7 +61,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 1.62477, -0.39882 ), Vector3( 0, 0.202754, 1.10996 ), Vector3( 0, 0.440909, 1.138 ), Vector3( 0, 0.202754, 1.10996 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("elvis:rotation_degrees")
+tracks/1/path = NodePath("Position3D/elvis:rotation_degrees")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -74,7 +73,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( -13.827, 0, 0 ), Vector3( 58.313, 0, 0 ), Vector3( 93.315, 0, 0 ), Vector3( 95.5026, 0, 0 ), Vector3( 93.315, 0, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("elvis:scale")
+tracks/2/path = NodePath("Position3D/elvis:scale")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -90,7 +89,7 @@ tracks/2/keys = {
 resource_name = "idle"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("elvis:translation")
+tracks/0/path = NodePath("Position3D/elvis:translation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -102,7 +101,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( -0.126485, -0.00645185, -0.0411108 ), Vector3( 0.09, -0.005, -0.029 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("elvis:rotation_degrees")
+tracks/1/path = NodePath("Position3D/elvis:rotation_degrees")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -114,7 +113,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 4.78348, 1.02111, 12.0647 ), Vector3( 3.417, -0.729, -8.618 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("elvis:scale")
+tracks/2/path = NodePath("Position3D/elvis:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -133,10 +132,6 @@ script = ExtResource( 4 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
-initial_state = NodePath("Idle")
-
-[node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape" parent="."]
 shape = SubResource( 5 )
@@ -147,4 +142,7 @@ anims/RESET = SubResource( 2 )
 anims/flip = SubResource( 3 )
 anims/idle = SubResource( 4 )
 
-[node name="elvis" parent="." instance=ExtResource( 3 )]
+[node name="Position3D" type="Position3D" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
+
+[node name="elvis" parent="Position3D" instance=ExtResource( 3 )]
