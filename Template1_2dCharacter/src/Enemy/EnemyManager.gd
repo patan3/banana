@@ -29,12 +29,12 @@ func _ready():
 func enemy_entered_left_path(body : Node):
 	if body.is_in_group("enemies"):
 		if body.direction == 1:
-			print("lose_point")
+			GameManager.emit_signal("enemy_crossed")
 	
 func enemy_entered_right_path(body : Node):
 	if body.is_in_group("enemies"):
 		if body.direction == -1:
-			print("lose_point")
+			GameManager.emit_signal("enemy_crossed")
 
 func generate_position() -> Vector3:
 	var side = Utils.choose([SIDE.LEFT, SIDE.RIGHT])
