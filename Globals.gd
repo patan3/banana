@@ -3,8 +3,6 @@ extends Node
 const WORLD_LAYER: = 2
 const ENEMIES_LAYER: = 1
 
-signal enemy_collected(enemy_counter)
-signal score_updated(score)
 
 var player_global_position
 
@@ -16,17 +14,12 @@ var slide_multiplier: float = 1.0
 var final_slide_score: float = 0.0
 
 
-func _ready():
-	connect("enemy_collected", self, "_on_Globals_enemy_collected")
+
 
 
 func _process(delta):
-	pass
-#	print("Score: " + str(score) + "     Multiplier: " + str(slide_multiplier) + "     Slide Points: " + str(slide_points))
+	print("Score: " + str(score) + "     Multiplier: " + str(slide_multiplier) + "     Slide Score: " + str(final_slide_score))
 
-
-func _on_Globals_enemy_collected(enemy_counter: int):
-	calculate(enemy_counter)
 
 func calculate(value: int, points: float = 50.0):
 	if value > 0 and value < 2:
@@ -44,7 +37,6 @@ func calculate_slide_points():
 
 func update_score(new_score: float):
 	score = score + new_score
-	emit_signal("score_updated", score)
 	reset_multiplier_points()
 
 func reset_multiplier_points():

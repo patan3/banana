@@ -19,7 +19,7 @@ func _ready():
 func _on_EnemyDetector_body_entered(body: Node):
 	if body.is_in_group("enemies"):
 		enemy_counter += 1
-		Globals.emit_signal("enemy_collected", enemy_counter)
+		Globals.calculate(enemy_counter)
 		emit_signal("enemy_collected")
 		body.kill()
 

@@ -11,10 +11,9 @@ signal slide_ended
 
 onready var cooldown_timer: Timer = get_node("CooldownTimer")
 
-export var slide_acceleration: float = 15
-export var slide_friction: float = 5
+export var slide_friction: float = 0.0125
 export var max_speed_friction: Vector2 = Vector2(800.0, 800.0)
-export var initial_slide_push_factor: float = 1.2
+export var initial_slide_push_factor: float = 1.5
 
 func unhandled_input(event: InputEvent) -> void:
 	var move: = get_parent()
@@ -26,8 +25,6 @@ func unhandled_input(event: InputEvent) -> void:
 func physics_process(delta: float) -> void:
 	var move: = get_parent()
 	move.physics_process(delta)
-	if move.velocity == Vector2.ZERO:
-		_state_machine.transition_to("Move")
 
 
 func enter(msg: Dictionary = {}) -> void:
@@ -38,10 +35,7 @@ func enter(msg: Dictionary = {}) -> void:
 	owner.set_collision_mask_bit(Globals.ENEMIES_LAYER, false)
 	owner.skin.play("run_naked")
 	owner.enemy_detector.is_active = true
-	
-	move.can_move = false
 	move.friction = slide_friction
-	move.acceleration = slide_acceleration
 	move.max_speed = max_speed_friction
 	move.velocity += move.velocity * initial_slide_push_factor
 #### Old code to take as reference ####
@@ -56,13 +50,9 @@ func exit() -> void:
 	var move: = get_parent()
 	emit_signal("slide_ended")
 	owner.enemy_detector.is_active = false
-	
-	move.can_move = true
 	move.friction = move.friction_default
-	move.acceleration = move.acceleration_default
 	move.max_speed = move.max_speed_default
 	cooldown_timer.start()
-	
 	owner.set_collision_mask_bit(Globals.WORLD_LAYER, true)
 	owner.set_collision_mask_bit(Globals.ENEMIES_LAYER, true)
 	move.exit()

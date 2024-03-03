@@ -19,7 +19,6 @@ func _ready() -> void:
 	yield(owner, "ready")
 	state.enter()
 
-
 func _unhandled_input(event: InputEvent) -> void:
 	state.unhandled_input(event)
 

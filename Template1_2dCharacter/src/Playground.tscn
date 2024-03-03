@@ -9,8 +9,9 @@
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 635, 278 )
 
-[node name="Move" parent="Player/StateMachine" index="0"]
-max_speed_default = Vector2( 500, 500 )
+[node name="Slide" parent="Player/StateMachine/Move" index="2"]
+slide_friction = 0.05
+initial_slide_push_factor = 0.2
 
 [node name="MomentumTimer" parent="Player/StateMachine/Move/Slide" index="0"]
 wait_time = 5.0
