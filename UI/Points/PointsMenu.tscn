@@ -17,6 +17,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 65, 14 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.25098, 0.952941, 0.0941176, 1 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "rotate"
@@ -44,6 +56,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 0.0, 10.0, -5.0, 0.0 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 1 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ Color( 0.25098, 0.952941, 0.0941176, 1 ), Color( 1, 1, 1, 1 ), Color( 0.25098, 0.952941, 0.0941176, 1 ), Color( 1, 1, 1, 1 ), Color( 0.25098, 0.952941, 0.0941176, 1 ) ]
+}
 
 [node name="PointsMenu" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -60,13 +84,16 @@ margin_bottom = 10.0
 rect_min_size = Vector2( 0, 10 )
 
 [node name="Score" type="Label" parent="VBoxContainer" groups=["score_label"]]
+modulate = Color( 0.25098, 0.952941, 0.0941176, 1 )
 margin_top = 14.0
 margin_right = 129.0
-margin_bottom = 28.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 0, 30 )
 rect_pivot_offset = Vector2( 65, 14 )
 size_flags_horizontal = 3
 text = "0"
 align = 1
+valign = 1
 __meta__ = {
 "_editor_description_": ""
 }
@@ -76,15 +103,15 @@ anims/RESET = SubResource( 2 )
 anims/rotate = SubResource( 1 )
 
 [node name="Space2" type="Control" parent="VBoxContainer"]
-margin_top = 32.0
+margin_top = 48.0
 margin_right = 129.0
-margin_bottom = 37.0
+margin_bottom = 53.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 41.0
+margin_top = 57.0
 margin_right = 129.0
-margin_bottom = 55.0
+margin_bottom = 71.0
 size_flags_horizontal = 3
 
 [node name="Multiplier" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
