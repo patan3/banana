@@ -17,16 +17,15 @@ autostart = true
 
 [node name="Wave_01" type="Node" parent="."]
 script = ExtResource( 2 )
-spawnInterval = 0.1
 waveDuration = 2.0
 
 [node name="Wave_02" type="Node" parent="."]
 script = ExtResource( 2 )
-spawnInterval = 0.1
-waveDuration = 2.0
+spawnInterval = 2.0
 
 [node name="Wave_03" type="Node" parent="."]
 script = ExtResource( 2 )
+spawnInterval = 1.5
 waveRecuperation = 6.0
 
 [node name="Wave_04" type="Node" parent="."]
@@ -38,7 +37,7 @@ music = "other"
 [node name="Wave_05" type="Node" parent="."]
 script = ExtResource( 2 )
 spawnInterval = 0.5
-waveDuration = 6.0
+waveDuration = 30.0
 
 [node name="Wave_06" type="Node" parent="."]
 script = ExtResource( 2 )
