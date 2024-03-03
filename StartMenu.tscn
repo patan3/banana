@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://StartMenu.gd" type="Script" id=1]
+[ext_resource path="res://assets/Jost-VariableFont_wght.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 42
+font_data = ExtResource( 2 )
 
 [node name="StartMenu" type="Control"]
 margin_right = 40.0
@@ -8,10 +17,18 @@ margin_bottom = 40.0
 script = ExtResource( 1 )
 
 [node name="StartButton" type="Button" parent="."]
-anchor_right = 24.638
-anchor_bottom = 10.411
-margin_left = 479.0
-margin_top = 203.0
-margin_right = -359.52
-margin_bottom = -132.44
+margin_left = 300.0
+margin_top = 250.0
+margin_right = 700.0
+margin_bottom = 320.0
+custom_fonts/font = SubResource( 1 )
 text = "Start"
+icon_align = 1
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 25.6
+anchor_bottom = 2.65
+custom_fonts/font = SubResource( 2 )
+text = "BANANANANANA"
+align = 1
+valign = 1
