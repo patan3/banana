@@ -43,6 +43,10 @@ waveDuration = 30.0
 script = ExtResource( 2 )
 spawnInterval = 1.5
 
+[node name="Wave_07" type="Node" parent="."]
+script = ExtResource( 2 )
+spawnInterval = 0.75
+
 [node name="SpawnArea_R" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0 )
 collision_layer = 2
