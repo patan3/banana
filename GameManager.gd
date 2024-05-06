@@ -1,6 +1,6 @@
 extends Node
 
-export var max_enemies_crossed: int = 10
+export var max_enemies_crossed: int = 1
 
 
 signal enemy_crossed
@@ -24,7 +24,7 @@ func start_game():
 
 func _on_GameManager_enemy_crossed():
 	enemies_crossed += 1
-	if enemies_crossed > max_enemies_crossed:
+	if enemies_crossed >= max_enemies_crossed:
 		emit_signal("loose_game")
 		get_tree().paused = true
 

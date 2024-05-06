@@ -19,6 +19,14 @@ var final_slide_score: float = 0.0
 
 
 func _ready():
+	SilentWolf.configure({
+	"api_key": "S1YMYULry13R9r3eZg5PT8YTeJnvRGjE6aO0vwAx",
+	"game_id": "Banana",
+	"game_version": "1.0.3",
+	"log_level": 1 })
+	
+	SilentWolf.configure_scores({"open_scene_on_close": "res://scenes/MainPage.tscn"})
+	
 	connect("enemy_collected", self, "_on_Globals_enemy_collected")
 
 func _process(_delta):

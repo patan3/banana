@@ -49,6 +49,7 @@ Globals="*res://Globals.gd"
 MusicManager="*res://Template1_2dCharacter/src/AudioManager/MusicManager.gd"
 SfxManager="*res://Template1_2dCharacter/src/AudioManager/SFXManager.gd"
 GameManager="*res://GameManager.gd"
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 
 [display]
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://LooseMenu.gd" type="Script" id=1]
+[ext_resource path="res://UI/InputScore.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -70,14 +71,20 @@ anchor_bottom = 1.0
 color = Color( 0.172549, 0.12549, 0.270588, 0.862745 )
 
 [node name="LostButton" type="Button" parent="."]
-margin_left = 368.0
-margin_top = 288.0
-margin_right = 465.0
-margin_bottom = 308.0
+margin_left = 1503.0
+margin_top = 77.0
+margin_right = 1600.0
+margin_bottom = 97.0
 rect_scale = Vector2( 3, 3 )
 disabled = true
-text = "banana lost :("
+text = "Restart"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )
 anims/appear = SubResource( 2 )
+
+[node name="InputScore" parent="." instance=ExtResource( 3 )]
+margin_left = 52.0
+margin_top = 227.0
+margin_right = 92.0
+margin_bottom = 267.0
